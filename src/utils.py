@@ -53,7 +53,7 @@ AUTOR_PORTFOLIO = "https://agenciaweedoo.github.io/my-portifolio/"
 
 ORG_NOME = "Weedoo"
 ORG_URL = "https://www.weedoo.med.br/"
-SITEMAP_URL = "https://www.weedoo.med.br/sitemaps.xml"
+SITEMAP_URL = "https://www.weedoo.med.br/sitemaps.xml"  # URL correta conforme robots.txt
 
 # ─── Cache de robots.txt (evita múltiplas leituras do mesmo domínio) ──────────
 _cache_robots: dict[str, RobotFileParser] = {}
@@ -119,7 +119,15 @@ def buscar_pagina(url: str, timeout: int = 20) -> str | None:
     except requests.exceptions.ConnectionError:
         logger.error("Erro de conexão ao buscar %s", url)
     except requests.exceptions.HTTPError as exc:
-        logger.error("Erro HTTP %s ao buscar %s", exc.response.status_code, url)
+        codigo = exc.response.status_code
+        dica = ""
+        if codigo in (403, 503):
+            dica = " — possível bloqueio Cloudflare (desative Browser Integrity Check no painel)"
+        elif codigo == 404:
+            dica = " — URL não encontrada, verifique config/urls_weedoo.txt"
+        elif codigo == 429:
+            dica = " — rate limit, aumente DELAY_SEGUNDOS em utils.py"
+        logger.error("Erro HTTP %d ao buscar %s%s", codigo, url, dica)
     except requests.exceptions.RequestException as exc:
         logger.error("Erro inesperado ao buscar %s: %s", url, exc)
 
