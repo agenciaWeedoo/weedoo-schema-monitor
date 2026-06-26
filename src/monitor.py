@@ -1,45 +1,39 @@
 import os
 import json
 from datetime import datetime
-from extruct import extract as extrair_dados_estruturados  # API correta
+from extruct import extract as extrair_dados_estruturados
 from utils import fetch_pagina, extrair_links_blog
 from comparador import comparar_schemas
 from relatorio import gerar_relatorio
 
-# URLs da Weedoo
 with open('config/urls_weedoo.txt') as f:
     urls_weedoo = [linha.strip() for linha in f if linha.strip()]
 
-# Adicionar posts do blog (até 5 mais recentes)
 links_blog = extrair_links_blog('https://www.weedoo.med.br/blog/')
 urls_weedoo.extend(links_blog[:5])
 
-# Concorrentes
 with open('config/concorrentes.json') as f:
     concorrentes = json.load(f)
 
 def extrair_schemas(url):
-    """Extrai todos os formatos de dados estruturados (JSON-LD, RDFa, Microdata)."""
     html = fetch_pagina(url)
     if not html:
         return None
     try:
-        # A função extract retorna um dict com chaves 'json-ld', 'rdfa', 'microdata'
         schemas = extrair_dados_estruturados(html, url)
-        # Renomear chave 'json-ld' para 'jsonld' para manter compatibilidade
         schemas['jsonld'] = schemas.pop('json-ld', [])
         return schemas
     except Exception as e:
         print(f"[AVISO] Falha ao extrair schemas de {url}: {e}")
         return None
 
-# Coleta para Weedoo
+# Weedoo
 dados_weedoo = {}
 for url in urls_weedoo:
     print(f"[WEEDOO] Processando: {url}")
     dados_weedoo[url] = extrair_schemas(url)
 
-# Coleta para concorrentes
+# Concorrentes
 dados_concorrentes = {}
 for conc in concorrentes:
     print(f"[CONCORRENTE] {conc['nome']}")
@@ -48,20 +42,18 @@ for conc in concorrentes:
     posts = extrair_links_blog(conc['blog'])[:3]
     posts_schemas = {}
     for p in posts:
-        schemas_p = extrair_schemas(p)
-        if schemas_p:
-            posts_schemas[p] = schemas_p
+        posts_schemas[p] = extrair_schemas(p)
     dados_concorrentes[conc['nome']] = {
         'home': home_schemas,
         'blog': blog_schemas,
         'posts': posts_schemas
     }
 
-# Comparar e gerar relatório
+# Relatório
 relatorio = comparar_schemas(dados_weedoo, dados_concorrentes)
 relatorio_path = gerar_relatorio(relatorio)
 
-# Postar Issue no GitHub
+# Issue
 github_token = os.environ.get('GITHUB_TOKEN')
 if github_token:
     from github import Github
