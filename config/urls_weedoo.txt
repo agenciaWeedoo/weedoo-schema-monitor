@@ -7,7 +7,13 @@ https://www.weedoo.med.br/
 https://www.weedoo.med.br/blog/
 https://www.weedoo.med.br/nossos-servicos/
 https://www.weedoo.med.br/sobre/
+https://www.weedoo.med.br/politica-de-privacidade/
 
 # ── Adicione abaixo URLs de artigos específicos para monitoramento prioritário ──
 # (Os artigos do blog também são coletados automaticamente via sitemap.xml)
-# https://www.weedoo.med.br/blog/exemplo-de-artigo/
+https://www.weedoo.med.br/seo-on-page-historia-evolucao/
+https://www.weedoo.med.br/a-ciencia-da-visibilidade-seo-de-alta-performance-e-inteligencia-de-dados-para-o-mercado-de-cannabis/
+https://www.weedoo.med.br/engenharia-digital-cannabis-medicinal-autoridade-2026/
+https://www.weedoo.med.br/geo-e-aeo-como-fazer-o-chatgpt-e-o-gemini-recomendarem-o-seu-consultorio/
+https://www.weedoo.med.br/ciencia-endocanabinoide-como-a-nova-producao-nacional-e-o-aval-do-stj-blindam-seu-consultorio/
+https://www.weedoo.med.br/o-guia-definitivo-da-ciencia-endocanabinoide-para-clinicas-de-alta-performance-etica-mercado-e-visibilidade/
