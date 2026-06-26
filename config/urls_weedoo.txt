@@ -1,0 +1,13 @@
+# URLs da Weedoo para monitoramento de Schema Markup
+# Formato: uma URL por linha | Linhas com # são ignoradas
+# O agente também coleta automaticamente posts do sitemap.xml
+
+# ── Páginas principais ─────────────────────────────────────────────────────────
+https://www.weedoo.med.br/
+https://www.weedoo.med.br/blog/
+https://www.weedoo.med.br/nossos-servicos/
+https://www.weedoo.med.br/sobre/
+
+# ── Adicione abaixo URLs de artigos específicos para monitoramento prioritário ──
+# (Os artigos do blog também são coletados automaticamente via sitemap.xml)
+# https://www.weedoo.med.br/blog/exemplo-de-artigo/
