@@ -53,7 +53,7 @@ AUTOR_PORTFOLIO = "https://agenciaweedoo.github.io/my-portifolio/"
 
 ORG_NOME = "Weedoo"
 ORG_URL = "https://www.weedoo.med.br/"
-SITEMAP_URL = "https://www.weedoo.med.br/sitemap.xml"
+SITEMAP_URL = "https://www.weedoo.med.br/sitemaps.xml"
 
 # ─── Cache de robots.txt (evita múltiplas leituras do mesmo domínio) ──────────
 _cache_robots: dict[str, RobotFileParser] = {}
