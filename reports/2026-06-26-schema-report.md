@@ -6,7 +6,7 @@
 
 ## 📊 Sumário Executivo
 
-Auditoria realizada em **26/06/2026** cobrindo **4 páginas** da Weedoo (4 acessíveis) e **5 concorrentes** no nicho de Medicina Endocanabinoide no Brasil. Foram identificados **4 erros** e **0 avisos** nos dados estruturados da Weedoo. Do total de páginas analisadas, **0 possuem** schema de artigo (`Article`/`BlogPosting`) implementado — campo crítico para E-E-A-T em conteúdo YMYL (saúde). Em relação à concorrência, **0 de 5 concorrentes** já implementam campos básicos de E-E-A-T (autor + publisher estruturados). A Weedoo **cobre todos os tipos de schema** utilizados pelos concorrentes monitorados — excelente cobertura! As recomendações a seguir estão priorizadas pelo impacto esperado em rich snippets e autoridade de busca.
+Auditoria realizada em **26/06/2026** cobrindo **4 páginas** da Weedoo (4 acessíveis) e **5 concorrentes** no nicho de Medicina Endocanabinoide no Brasil. Foram identificados **4 erros** e **0 avisos** nos dados estruturados da Weedoo. Do total de páginas analisadas, **0 possuem** schema de artigo (`Article`/`BlogPosting`) implementado — campo crítico para E-E-A-T em conteúdo YMYL (saúde). Em relação à concorrência, **0 de 5 concorrentes** já implementam campos básicos de E-E-A-T (autor + publisher estruturados). A Weedoo **não utiliza** 3 tipo(s) de schema já adotados por concorrentes: `BreadcrumbList`, `FAQPage`, `ProfessionalService`. As recomendações a seguir estão priorizadas pelo impacto esperado em rich snippets e autoridade de busca.
 
 
 ## 🔍 Cobertura de Schemas — Weedoo
@@ -40,6 +40,9 @@ Auditoria realizada em **26/06/2026** cobrindo **4 páginas** da Weedoo (4 acess
 
 | Schema | Weedoo | Rocket Med | WeCann Academy | Cannabis & Saúde | Dr. Cannabis | Cannect |
 |--------|--------|-------- | -------- | -------- | -------- | --------|
+| `BreadcrumbList` | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
+| `FAQPage` | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
+| `ProfessionalService` | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
 
 ### 🏆 Análise de E-E-A-T e Autoridade Médica
 
@@ -48,8 +51,14 @@ Auditoria realizada em **26/06/2026** cobrindo **4 páginas** da Weedoo (4 acess
 | Autor estruturado (E-E-A-T) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Publisher estruturado (E-E-A-T) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | Schema médico (MedicalWebPage/Physician) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| Rich snippets (FAQ/HowTo/Video) | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| BreadcrumbList | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Rich snippets (FAQ/HowTo/Video) | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
+| BreadcrumbList | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
+
+### ⚠️ Tipos de Schema Usados por Concorrentes mas Ausentes na Weedoo
+
+- `BreadcrumbList` — usado por: Rocket Med
+- `FAQPage` — usado por: Rocket Med
+- `ProfessionalService` — usado por: Rocket Med
 
 ## 🎯 Top 5 Recomendações Priorizadas
 
