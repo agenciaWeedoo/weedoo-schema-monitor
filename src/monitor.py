@@ -1,0 +1,79 @@
+import os
+import json
+import requests
+from datetime import datetime
+from extruct.jsonld import JsonLdExtractor
+from extruct.rdfa import RDFaExtractor
+from extruct.microdata import MicrodataExtractor
+from utils import fetch_pagina, extrair_links_blog
+from comparador import comparar_schemas
+from relatorio import gerar_relatorio
+
+# URLs da Weedoo
+with open('config/urls_weedoo.txt') as f:
+    urls_weedoo = [linha.strip() for linha in f if linha.strip()]
+
+# Adicionar posts do blog (até 5 mais recentes)
+links_blog = extrair_links_blog('https://www.weedoo.med.br/blog/')
+urls_weedoo.extend(links_blog[:5])
+
+# Concorrentes
+with open('config/concorrentes.json') as f:
+    concorrentes = json.load(f)
+
+# Extrair schemas de uma URL
+def extrair_schemas(url):
+    html = fetch_pagina(url)
+    if not html:
+        return None
+    schemas = {}
+    try:
+        schemas['jsonld'] = JsonLdExtractor().extract(html, url)
+    except:
+        schemas['jsonld'] = []
+    try:
+        schemas['rdfa'] = RDFaExtractor().extract(html, url)
+    except:
+        schemas['rdfa'] = []
+    try:
+        schemas['microdata'] = MicrodataExtractor().extract(html, url)
+    except:
+        schemas['microdata'] = []
+    return schemas
+
+# Coleta para Weedoo
+dados_weedoo = {}
+for url in urls_weedoo:
+    print(f"[WEEDOO] Processando: {url}")
+    dados_weedoo[url] = extrair_schemas(url)
+
+# Coleta para concorrentes
+dados_concorrentes = {}
+for conc in concorrentes:
+    print(f"[CONCORRENTE] {conc['nome']}")
+    dados_conc = {'home': extrair_schemas(conc['home'])}
+    # Blog e 3 posts
+    dados_conc['blog'] = extrair_schemas(conc['blog'])
+    posts = extrair_links_blog(conc['blog'])[:3]
+    dados_conc['posts'] = {}
+    for p in posts:
+        dados_conc['posts'][p] = extrair_schemas(p)
+    dados_concorrentes[conc['nome']] = dados_conc
+
+# Comparar e gerar relatório
+relatorio = comparar_schemas(dados_weedoo, dados_concorrentes)
+relatorio_path = gerar_relatorio(relatorio)
+
+# Postar Issue no GitHub
+github_token = os.environ.get('GITHUB_TOKEN')
+if github_token:
+    from github import Github
+    g = Github(github_token)
+    repo = g.get_repo(os.environ['GITHUB_REPOSITORY'])
+    with open(relatorio_path, 'r') as f:
+        conteudo = f.read()
+    titulo = f"📊 Relatório Schema Markup - {datetime.now().strftime('%d/%m/%Y')}"
+    repo.create_issue(title=titulo, body=conteudo, labels=['schema-report'])
+    print(f"[OK] Issue criada: {titulo}")
+else:
+    print("[AVISO] GITHUB_TOKEN não encontrado. Issue não criada.")
