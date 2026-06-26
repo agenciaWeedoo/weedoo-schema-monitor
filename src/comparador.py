@@ -18,9 +18,18 @@ def achar_tipos(schemas_dict):
     if not schemas_dict:
         return tipos
     for formato, dados in schemas_dict.items():
+        if not dados:
+            continue
         for item in dados:
             t = item.get('@type') or item.get('type')
-            if t:
+            if not t:
+                continue
+            # Se @type for uma lista, itera sobre cada tipo
+            if isinstance(t, list):
+                for subt in t:
+                    if isinstance(subt, str):
+                        tipos.add(subt)
+            elif isinstance(t, str):
                 tipos.add(t)
     return tipos
 
