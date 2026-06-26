@@ -6,7 +6,7 @@
 
 ## 📊 Sumário Executivo
 
-Auditoria realizada em **26/06/2026** cobrindo **4 páginas** da Weedoo (4 acessíveis) e **5 concorrentes** no nicho de Medicina Endocanabinoide no Brasil. Foram identificados **4 erros** e **0 avisos** nos dados estruturados da Weedoo. Do total de páginas analisadas, **0 possuem** schema de artigo (`Article`/`BlogPosting`) implementado — campo crítico para E-E-A-T em conteúdo YMYL (saúde). Em relação à concorrência, **0 de 5 concorrentes** já implementam campos básicos de E-E-A-T (autor + publisher estruturados). A Weedoo **não utiliza** 3 tipo(s) de schema já adotados por concorrentes: `BreadcrumbList`, `FAQPage`, `ProfessionalService`. As recomendações a seguir estão priorizadas pelo impacto esperado em rich snippets e autoridade de busca.
+Auditoria realizada em **26/06/2026** cobrindo **11 páginas** da Weedoo (11 acessíveis) e **5 concorrentes** no nicho de Medicina Endocanabinoide no Brasil. Foram identificados **11 erros** e **0 avisos** nos dados estruturados da Weedoo. Do total de páginas analisadas, **0 possuem** schema de artigo (`Article`/`BlogPosting`) implementado — campo crítico para E-E-A-T em conteúdo YMYL (saúde). Em relação à concorrência, **0 de 5 concorrentes** já implementam campos básicos de E-E-A-T (autor + publisher estruturados). A Weedoo **não utiliza** 3 tipo(s) de schema já adotados por concorrentes: `BreadcrumbList`, `FAQPage`, `ProfessionalService`. As recomendações a seguir estão priorizadas pelo impacto esperado em rich snippets e autoridade de busca.
 
 
 ## 🔍 Cobertura de Schemas — Weedoo
@@ -17,6 +17,13 @@ Auditoria realizada em **26/06/2026** cobrindo **4 páginas** da Weedoo (4 acess
 | `/blog` | blog_listagem | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
 | `/nossos-servicos` | servicos | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
 | `/sobre` | sobre | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
+| `/politica-de-privacidade` | pagina_generica | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
+| `/seo-on-page-historia-evolucao` | pagina_generica | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
+| `/a-ciencia-da-visibilidade-seo-de-alta-performance-e-inteligencia-de-dados-para-o-mercado-de-cannabis` | pagina_generica | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
+| `/engenharia-digital-cannabis-medicinal-autoridade-2026` | pagina_generica | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
+| `/geo-e-aeo-como-fazer-o-chatgpt-e-o-gemini-recomendarem-o-seu-consultorio` | pagina_generica | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
+| `/ciencia-endocanabinoide-como-a-nova-producao-nacional-e-o-aval-do-stj-blindam-seu-consultorio` | pagina_generica | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
+| `/o-guia-definitivo-da-ciencia-endocanabinoide-para-clinicas-de-alta-performance-etica-mercado-e-visibilidade` | pagina_generica | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
 
 ### 📋 Detalhamento de Erros e Avisos por Página
 
@@ -33,6 +40,34 @@ Auditoria realizada em **26/06/2026** cobrindo **4 páginas** da Weedoo (4 acess
 - 🔴 **ERRO:** Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
 
 #### `/sobre`
+
+- 🔴 **ERRO:** Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+#### `/politica-de-privacidade`
+
+- 🔴 **ERRO:** Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+#### `/seo-on-page-historia-evolucao`
+
+- 🔴 **ERRO:** Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+#### `/a-ciencia-da-visibilidade-seo-de-alta-performance-e-inteligencia-de-dados-para-o-mercado-de-cannabis`
+
+- 🔴 **ERRO:** Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+#### `/engenharia-digital-cannabis-medicinal-autoridade-2026`
+
+- 🔴 **ERRO:** Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+#### `/geo-e-aeo-como-fazer-o-chatgpt-e-o-gemini-recomendarem-o-seu-consultorio`
+
+- 🔴 **ERRO:** Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+#### `/ciencia-endocanabinoide-como-a-nova-producao-nacional-e-o-aval-do-stj-blindam-seu-consultorio`
+
+- 🔴 **ERRO:** Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+#### `/o-guia-definitivo-da-ciencia-endocanabinoide-para-clinicas-de-alta-performance-etica-mercado-e-visibilidade`
 
 - 🔴 **ERRO:** Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
 
@@ -316,6 +351,34 @@ Adicione ao final de artigos informativos uma seção de FAQ com este schema:
 1. Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
 
 **`/sobre`** (1 erro(s))
+
+1. Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+**`/politica-de-privacidade`** (1 erro(s))
+
+1. Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+**`/seo-on-page-historia-evolucao`** (1 erro(s))
+
+1. Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+**`/a-ciencia-da-visibilidade-seo-de-alta-performance-e-inteligencia-de-dados-para-o-mercado-de-cannabis`** (1 erro(s))
+
+1. Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+**`/engenharia-digital-cannabis-medicinal-autoridade-2026`** (1 erro(s))
+
+1. Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+**`/geo-e-aeo-como-fazer-o-chatgpt-e-o-gemini-recomendarem-o-seu-consultorio`** (1 erro(s))
+
+1. Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+**`/ciencia-endocanabinoide-como-a-nova-producao-nacional-e-o-aval-do-stj-blindam-seu-consultorio`** (1 erro(s))
+
+1. Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
+
+**`/o-guia-definitivo-da-ciencia-endocanabinoide-para-clinicas-de-alta-performance-etica-mercado-e-visibilidade`** (1 erro(s))
 
 1. Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
 
