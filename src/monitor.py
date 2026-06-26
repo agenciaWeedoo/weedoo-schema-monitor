@@ -43,14 +43,19 @@ for url in urls_weedoo:
 dados_concorrentes = {}
 for conc in concorrentes:
     print(f"[CONCORRENTE] {conc['nome']}")
-    dados_conc = {'home': extrair_schemas(conc['home'])}
-    # Blog e 3 posts
-    dados_conc['blog'] = extrair_schemas(conc['blog'])
+    home_schemas = extrair_schemas(conc['home'])
+    blog_schemas = extrair_schemas(conc['blog'])
     posts = extrair_links_blog(conc['blog'])[:3]
-    dados_conc['posts'] = {}
+    posts_schemas = {}
     for p in posts:
-        dados_conc['posts'][p] = extrair_schemas(p)
-    dados_concorrentes[conc['nome']] = dados_conc
+        schemas_p = extrair_schemas(p)
+        if schemas_p:
+            posts_schemas[p] = schemas_p
+    dados_concorrentes[conc['nome']] = {
+        'home': home_schemas,
+        'blog': blog_schemas,
+        'posts': posts_schemas
+    }
 
 # Comparar e gerar relatório
 relatorio = comparar_schemas(dados_weedoo, dados_concorrentes)
