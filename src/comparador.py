@@ -4,7 +4,7 @@ AUTHOR_OBRIGATORIO = {
     "url": "https://www.weedoo.med.br/sobre/",
     "sameAs": [
         "https://agenciaweedoo.github.io/my-portifolio/",
-        "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/"
+        "{{LINKEDIN_URL}}"  # Substituir pela URL real do LinkedIn
     ]
 }
 
@@ -24,7 +24,6 @@ def achar_tipos(schemas_dict):
             t = item.get('@type') or item.get('type')
             if not t:
                 continue
-            # Se @type for uma lista, itera sobre cada tipo
             if isinstance(t, list):
                 for subt in t:
                     if isinstance(subt, str):
@@ -35,6 +34,8 @@ def achar_tipos(schemas_dict):
 
 def validar_artigo_weedoo(schemas_dict):
     erros = []
+    if not schemas_dict:
+        return erros
     artigos = []
     for item in schemas_dict.get('jsonld', []):
         if item.get('@type') == 'Article':
@@ -46,29 +47,34 @@ def validar_artigo_weedoo(schemas_dict):
     return erros
 
 def comparar_schemas(dados_weedoo, dados_concorrentes):
-    # Tipos usados pela Weedoo
     tipos_weedoo = set()
-    for url, schemas in dados_weedoo.items():
-        tipos_weedoo.update(achar_tipos(schemas))
+    erros = []
 
-    # Tipos usados por cada concorrente
+    for url, schemas in dados_weedoo.items():
+        if schemas is None:
+            erros.append(f"Falha ao acessar (403/404/erro): {url}")
+            continue
+        tipos_weedoo.update(achar_tipos(schemas))
+        erros.extend(validar_artigo_weedoo(schemas))
+
+    # Se não conseguiu acessar nenhuma página, gera alerta principal
+    if not tipos_weedoo and not any(schemas is not None for schemas in dados_weedoo.values()):
+        erros.insert(0, "🔴 BLOQUEIO TOTAL: Nenhuma página da Weedoo pôde ser acessada (403 Forbidden). "
+                         "Verifique se o firewall/servidor está rejeitando os IPs do GitHub Actions.")
+
     concorrentes_tipos = {}
     for nome, dados in dados_concorrentes.items():
         conc_tipos = set()
         for chave, schemas in dados.items():
             if chave == 'posts':
                 for post_url, post_schemas in dados['posts'].items():
-                    conc_tipos.update(achar_tipos(post_schemas))
+                    if post_schemas:
+                        conc_tipos.update(achar_tipos(post_schemas))
             else:
-                conc_tipos.update(achar_tipos(schemas))
+                if schemas:
+                    conc_tipos.update(achar_tipos(schemas))
         concorrentes_tipos[nome] = conc_tipos
 
-    # Verificar erros na Weedoo
-    erros = []
-    for url, schemas in dados_weedoo.items():
-        erros.extend(validar_artigo_weedoo(schemas))
-
-    # Gerar recomendações
     recomendacoes = []
     for tipo in TIPOS_ALVO:
         if tipo not in tipos_weedoo:
@@ -80,13 +86,12 @@ def comparar_schemas(dados_weedoo, dados_concorrentes):
                     'impacto': 'Alto' if tipo in ['FAQ', 'HowTo', 'MedicalWebPage'] else 'Médio'
                 })
 
-    # Priorizar recomendações por impacto
     prioridade = {'Alto': 0, 'Médio': 1}
     recomendacoes.sort(key=lambda x: prioridade.get(x['impacto'], 2))
 
     return {
         'data': __import__('datetime').datetime.now().strftime('%d/%m/%Y'),
-        'tipos_weedoo': sorted(tipos_weedoo),
+        'tipos_weedoo': sorted(tipos_weedoo) if tipos_weedoo else ["Nenhum (site bloqueado)"],
         'tipos_concorrentes': {k: sorted(v) for k, v in concorrentes_tipos.items()},
         'erros': erros,
         'recomendacoes': recomendacoes[:5]
