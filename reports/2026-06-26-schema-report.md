@@ -6,35 +6,35 @@
 
 ## 📊 Sumário Executivo
 
-Auditoria realizada em **26/06/2026** cobrindo **4 páginas** da Weedoo (0 acessíveis) e **5 concorrentes** no nicho de Medicina Endocanabinoide no Brasil. Foram identificados **4 erros** e **0 avisos** nos dados estruturados da Weedoo. Do total de páginas analisadas, **0 possuem** schema de artigo (`Article`/`BlogPosting`) implementado — campo crítico para E-E-A-T em conteúdo YMYL (saúde). Em relação à concorrência, **0 de 5 concorrentes** já implementam campos básicos de E-E-A-T (autor + publisher estruturados). A Weedoo **cobre todos os tipos de schema** utilizados pelos concorrentes monitorados — excelente cobertura! As recomendações a seguir estão priorizadas pelo impacto esperado em rich snippets e autoridade de busca.
+Auditoria realizada em **26/06/2026** cobrindo **4 páginas** da Weedoo (4 acessíveis) e **5 concorrentes** no nicho de Medicina Endocanabinoide no Brasil. Foram identificados **4 erros** e **0 avisos** nos dados estruturados da Weedoo. Do total de páginas analisadas, **0 possuem** schema de artigo (`Article`/`BlogPosting`) implementado — campo crítico para E-E-A-T em conteúdo YMYL (saúde). Em relação à concorrência, **0 de 5 concorrentes** já implementam campos básicos de E-E-A-T (autor + publisher estruturados). A Weedoo **cobre todos os tipos de schema** utilizados pelos concorrentes monitorados — excelente cobertura! As recomendações a seguir estão priorizadas pelo impacto esperado em rich snippets e autoridade de busca.
 
 
 ## 🔍 Cobertura de Schemas — Weedoo
 
 | Página | Tipo | Schemas Encontrados | Erros | Avisos | Status |
 |--------|------|---------------------|-------|--------|--------|
-| `/` | home | ❌ Nenhum | 1 | 0 | ⚫ Inacessível |
-| `/blog` | blog_listagem | ❌ Nenhum | 1 | 0 | ⚫ Inacessível |
-| `/nossos-servicos` | servicos | ❌ Nenhum | 1 | 0 | ⚫ Inacessível |
-| `/sobre` | sobre | ❌ Nenhum | 1 | 0 | ⚫ Inacessível |
+| `/` | home | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
+| `/blog` | blog_listagem | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
+| `/nossos-servicos` | servicos | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
+| `/sobre` | sobre | ❌ Nenhum | 1 | 0 | 🟡 Atenção |
 
 ### 📋 Detalhamento de Erros e Avisos por Página
 
 #### `/`
 
-- 🔴 **ERRO:** Página inacessível (falha na requisição HTTP): https://www.weedoo.med.br/
+- 🔴 **ERRO:** Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
 
 #### `/blog`
 
-- 🔴 **ERRO:** Página inacessível (falha na requisição HTTP): https://www.weedoo.med.br/blog/
+- 🔴 **ERRO:** Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
 
 #### `/nossos-servicos`
 
-- 🔴 **ERRO:** Página inacessível (falha na requisição HTTP): https://www.weedoo.med.br/nossos-servicos/
+- 🔴 **ERRO:** Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
 
 #### `/sobre`
 
-- 🔴 **ERRO:** Página inacessível (falha na requisição HTTP): https://www.weedoo.med.br/sobre/
+- 🔴 **ERRO:** Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
 
 ## 🥊 Comparativo com Concorrentes
 
@@ -296,19 +296,19 @@ Adicione ao final de artigos informativos uma seção de FAQ com este schema:
 
 **`/`** (1 erro(s))
 
-1. Página inacessível (falha na requisição HTTP): https://www.weedoo.med.br/
+1. Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
 
 **`/blog`** (1 erro(s))
 
-1. Página inacessível (falha na requisição HTTP): https://www.weedoo.med.br/blog/
+1. Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
 
 **`/nossos-servicos`** (1 erro(s))
 
-1. Página inacessível (falha na requisição HTTP): https://www.weedoo.med.br/nossos-servicos/
+1. Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
 
 **`/sobre`** (1 erro(s))
 
-1. Página inacessível (falha na requisição HTTP): https://www.weedoo.med.br/sobre/
+1. Nenhum dado estruturado (JSON-LD ou Microdata) encontrado nesta página. Isso prejudica severamente a visibilidade em rich snippets.
 
 
 ---
