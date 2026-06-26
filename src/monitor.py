@@ -1,10 +1,7 @@
 import os
 import json
-import requests
 from datetime import datetime
-from extruct.jsonld import JsonLdExtractor
-from extruct.rdfa import RDFaExtractor
-from extruct.microdata import MicrodataExtractor
+from extruct import extract as extrair_dados_estruturados  # API correta
 from utils import fetch_pagina, extrair_links_blog
 from comparador import comparar_schemas
 from relatorio import gerar_relatorio
@@ -21,25 +18,20 @@ urls_weedoo.extend(links_blog[:5])
 with open('config/concorrentes.json') as f:
     concorrentes = json.load(f)
 
-# Extrair schemas de uma URL
 def extrair_schemas(url):
+    """Extrai todos os formatos de dados estruturados (JSON-LD, RDFa, Microdata)."""
     html = fetch_pagina(url)
     if not html:
         return None
-    schemas = {}
     try:
-        schemas['jsonld'] = JsonLdExtractor().extract(html, url)
-    except:
-        schemas['jsonld'] = []
-    try:
-        schemas['rdfa'] = RDFaExtractor().extract(html, url)
-    except:
-        schemas['rdfa'] = []
-    try:
-        schemas['microdata'] = MicrodataExtractor().extract(html, url)
-    except:
-        schemas['microdata'] = []
-    return schemas
+        # A função extract retorna um dict com chaves 'json-ld', 'rdfa', 'microdata'
+        schemas = extrair_dados_estruturados(html, url)
+        # Renomear chave 'json-ld' para 'jsonld' para manter compatibilidade
+        schemas['jsonld'] = schemas.pop('json-ld', [])
+        return schemas
+    except Exception as e:
+        print(f"[AVISO] Falha ao extrair schemas de {url}: {e}")
+        return None
 
 # Coleta para Weedoo
 dados_weedoo = {}
