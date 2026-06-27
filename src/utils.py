@@ -181,3 +181,68 @@ def agrupar_schemas_por_tipo(items: list[dict]) -> dict[str, list[dict]]:
         tipo = obter_tipo_schema(item)
         grupos.setdefault(tipo, []).append(item)
     return grupos
+
+
+# ─── Wayback Machine (archive.org) ────────────────────────────────────────────
+
+def buscar_via_wayback(url: str, timeout: int = 25) -> str | None:
+    """
+    Busca uma versão arquivada da URL via Wayback Machine (archive.org).
+
+    Estratégia para sites que bloqueiam bots via robots.txt:
+    - Gratuito, sem chave de API.
+    - Busca o snapshot mais recente disponível (últimos 6 meses).
+    - O arquivo histórico não está sujeito ao robots.txt do site original.
+    - Dados de schema mudam lentamente — uma versão de semanas atrás é válida para auditoria.
+
+    Returns:
+        HTML do snapshot arquivado, ou None se não houver snapshot disponível.
+    """
+    try:
+        # 1. Consultar a API de disponibilidade do Wayback Machine
+        time.sleep(DELAY_SEGUNDOS)
+        from datetime import date as _date
+        timestamp_hoje = _date.today().strftime("%Y%m%d")
+        api_url = (
+            f"https://archive.org/wayback/available"
+            f"?url={url}&timestamp={timestamp_hoje}"
+        )
+        resp_api = requests.get(api_url, headers=HEADERS_PADRAO, timeout=15)
+        resp_api.raise_for_status()
+
+        dados = resp_api.json()
+        snapshot = dados.get("archived_snapshots", {}).get("closest", {})
+
+        if not snapshot.get("available"):
+            logger.info("📦 Wayback: sem snapshot disponível para %s", url)
+            return None
+
+        wayback_url = snapshot["url"]
+        ts = snapshot.get("timestamp", "?")[:8]
+        logger.info("📦 Wayback: snapshot de %s/%s/%s encontrado", ts[:4], ts[4:6], ts[6:8])
+
+        # 2. Usar versão "raw" (sem barra de navegação do Wayback, HTML limpo)
+        # Formato: https://web.archive.org/web/TIMESTAMP/URL
+        # Com "id_" o Wayback não injeta seu próprio HTML no topo
+        wayback_url_raw = wayback_url.replace(
+            "/web/", "/web/id_/", 1
+        )
+
+        # 3. Buscar o conteúdo do snapshot
+        time.sleep(DELAY_SEGUNDOS)
+        resp = requests.get(wayback_url_raw, headers=HEADERS_PADRAO, timeout=timeout)
+        resp.raise_for_status()
+
+        if resp.encoding is None or resp.encoding.lower() in ("iso-8859-1", "latin-1"):
+            resp.encoding = resp.apparent_encoding or "utf-8"
+
+        return resp.text
+
+    except requests.exceptions.HTTPError as exc:
+        logger.warning("📦 Wayback HTTP %d para %s", exc.response.status_code, url)
+    except requests.exceptions.Timeout:
+        logger.warning("📦 Wayback timeout para %s", url)
+    except Exception as exc:
+        logger.warning("📦 Wayback falhou para %s: %s", url, exc)
+
+    return None
