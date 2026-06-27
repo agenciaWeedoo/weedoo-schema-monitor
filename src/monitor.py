@@ -15,6 +15,7 @@ from pathlib import Path
 from datetime import date
 
 import requests
+from bs4 import BeautifulSoup
 
 # Garantir que o diretório src esteja no path de importação
 sys.path.insert(0, str(Path(__file__).parent))
@@ -156,16 +157,33 @@ def obter_urls_sitemap(
                         break
         else:
             # Sitemap de URLs comuns
+            # Detectar se este é um sitemap específico de posts do WordPress
+            # (ex.: post-sitemap1.xml, post-sitemap2.xml) — contém apenas posts
+            eh_post_sitemap = "post-sitemap" in sitemap_url.lower()
+
+            # Padrões de URL que NÃO são artigos (taxonomias, arquivos, admin)
+            excluir_padroes = [
+                "/wp-admin/", "/feed/", "/author/", "/tag/", "/tags/",
+                "/category/", "/categoria/", "/page/", "?",
+            ]
+
             for url_el in root.findall("sm:url", ns):
                 loc = url_el.find("sm:loc", ns)
                 if loc is not None and loc.text:
                     url = loc.text.strip()
-                    # Inclui apenas artigos do blog (URLs com /blog/<slug>)
-                    if (
-                        "/blog/" in url
-                        and url.rstrip("/") != "https://www.weedoo.med.br/blog"
-                        and url != "https://www.weedoo.med.br/blog/"
+
+                    # Pular URLs com padrões de não-artigo
+                    if any(p in url for p in excluir_padroes):
+                        continue
+
+                    if eh_post_sitemap:
+                        # Sitemap de posts: incluir todos (são todos artigos por definição)
+                        urls.append(url)
+                    elif "/blog/" in url and url.rstrip("/") not in (
+                        "https://www.weedoo.med.br/blog",
+                        "https://www.weedoo.med.br/blog/",
                     ):
+                        # Sitemap geral: filtrar por prefixo /blog/ no URL
                         urls.append(url)
 
     except ET.ParseError as exc:
@@ -447,6 +465,70 @@ def validar_schema_item(item: dict, tipo: str, url: str) -> dict:
 
 # ─── Análise de uma página da Weedoo ──────────────────────────────────────────
 
+def extrair_metadados_pagina(html: str, url: str) -> dict:
+    """
+    Extrai metadados ricos da página para personalizar os schemas recomendados.
+    Coleta: título, descrição, imagem, datas, headings e excerto do conteúdo.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+
+    def _meta(prop: str | None = None, name: str | None = None) -> str:
+        if prop:
+            el = soup.find("meta", property=prop)
+        else:
+            el = soup.find("meta", attrs={"name": name})
+        return (el.get("content") or "").strip() if el else ""
+
+    # Título: prioridade og:title > <title> > <h1>
+    titulo = _meta(prop="og:title")
+    if not titulo and soup.title:
+        titulo = soup.title.get_text()
+        for sep in [" | Weedoo", " - Weedoo", "| Weedoo", "– Weedoo", " — Weedoo"]:
+            titulo = titulo.replace(sep, "").strip()
+    if not titulo:
+        h1 = soup.find("h1")
+        titulo = h1.get_text().strip() if h1 else ""
+
+    descricao = _meta(prop="og:description") or _meta(name="description")
+    imagem = _meta(prop="og:image")
+    data_pub = (
+        _meta(prop="article:published_time")
+        or _meta(name="article:published_time")
+        or _meta(prop="og:article:published_time")
+    )
+    data_mod = (
+        _meta(prop="article:modified_time")
+        or _meta(name="article:modified_time")
+        or _meta(prop="og:article:modified_time")
+        or data_pub  # fallback para data de publicação
+    )
+
+    # Headings do artigo (H2 e H3) para geração de FAQs
+    headings = [
+        h.get_text().strip()
+        for h in soup.find_all(["h2", "h3"])
+        if len(h.get_text().strip()) > 5
+    ][:8]
+
+    # Excerto do conteúdo para contexto das FAQs
+    paragrafos = [
+        p.get_text().strip()
+        for p in soup.find_all("p")
+        if len(p.get_text().strip()) > 80
+    ][:5]
+
+    return {
+        "titulo": titulo.strip(),
+        "descricao": descricao,
+        "imagem": imagem,
+        "data_publicacao": data_pub,
+        "data_modificacao": data_mod,
+        "headings": headings,
+        "conteudo": " ".join(paragrafos)[:800],
+    }
+
+
+
 def _classificar_tipo_pagina(url: str) -> str:
     """Classifica o tipo de página com base na URL para definir schemas esperados."""
     url_lower = url.lower().rstrip("/")
@@ -487,6 +569,7 @@ def analisar_pagina_weedoo(url: str) -> dict:
         "todos_erros": [],
         "todos_avisos": [],
         "tipos_presentes": [],
+        "metadados": {},
     }
 
     # Buscar HTML
