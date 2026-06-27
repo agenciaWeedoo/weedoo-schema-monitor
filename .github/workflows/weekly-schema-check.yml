@@ -2,42 +2,33 @@ name: 🔍 Monitoramento Semanal de Schema Markup — Weedoo
 
 on:
   schedule:
-    # Toda segunda-feira às 09:00 UTC = 06:00 BRT (UTC-3)
-    - cron: '0 9 * * 1'
-
-  # Permite execução manual a qualquer momento pelo painel do GitHub Actions
+    - cron: '0 9 * * 1'  # Toda segunda-feira às 09:00 UTC = 06:00 BRT
   workflow_dispatch:
     inputs:
       debug_mode:
-        description: 'Ativar modo de debug verboso nos logs'
+        description: 'Ativar modo de debug verboso'
         required: false
         default: 'false'
         type: choice
-        options:
-          - 'false'
-          - 'true'
+        options: ['false', 'true']
 
-# Permissões necessárias para criar Issues e fazer push do relatório
 permissions:
-  contents: write   # Para commit e push do arquivo em /reports
-  issues: write     # Para criar Issues com o relatório
+  contents: write
+  issues: write
 
 jobs:
   schema-monitor:
     name: Auditoria de Schema Markup
     runs-on: ubuntu-latest
-    timeout-minutes: 45   # Timeout generoso para scraping com delays éticos
+    timeout-minutes: 45
 
     steps:
-      # ─── 1. Checkout ───────────────────────────────────────────────────────
       - name: 📥 Checkout do repositório
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          # Fetch da branch inteira para permitir push posterior
           fetch-depth: 1
 
-      # ─── 2. Python ─────────────────────────────────────────────────────────
       - name: 🐍 Configurar Python 3.11
         uses: actions/setup-python@v5
         with:
@@ -45,53 +36,52 @@ jobs:
           cache: 'pip'
           cache-dependency-path: 'requirements.txt'
 
-      # ─── 3. Dependências ───────────────────────────────────────────────────
-      - name: 📦 Instalar dependências Python
+      - name: 📦 Instalar dependências
         run: |
           python -m pip install --upgrade pip
           pip install \
             requests==2.31.0 \
             beautifulsoup4==4.12.3 \
+            "lxml==4.9.4" \
             extruct==0.16.0 \
-            lxml==4.9.4 \
             w3lib==2.1.2 \
             PyGithub==2.3.0
 
-      # ─── 4. Garantir diretórios ────────────────────────────────────────────
-      - name: 📁 Garantir que o diretório /reports existe
+      - name: 📁 Garantir diretório /reports
         run: mkdir -p reports
 
-      # ─── 5. Executar monitoramento ─────────────────────────────────────────
       - name: 🤖 Executar monitoramento de Schema Markup
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          PYTHONUNBUFFERED: "1"   # Garante logs em tempo real no Actions
+          PYTHONUNBUFFERED: "1"
           DEBUG_MODE: ${{ inputs.debug_mode || 'false' }}
+          # Opcional: adicione ANTHROPIC_API_KEY como secret no repositório para
+          # ativar geração de FAQs por IA (mais relevantes para cada artigo).
+          # Sem ela, as FAQs são geradas por heurísticas baseadas nos headings.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           echo "=== Iniciando WeedooSEOMonitorBot ==="
           echo "Repositório : $GITHUB_REPOSITORY"
           echo "Data/Hora   : $(date +'%Y-%m-%d %H:%M:%S %Z')"
           echo "Python      : $(python --version)"
+          echo "FAQ com IA  : $([ -n '${{ secrets.ANTHROPIC_API_KEY }}' ] && echo 'Ativado' || echo 'Desativado (heurísticas)')"
           python src/monitor.py
 
-      # ─── 6. Commit e push do relatório ─────────────────────────────────────
       - name: 💾 Commit e push do relatório gerado
         run: |
           git config user.name  "WeedooSEOBot"
           git config user.email "bot@weedoo.med.br"
           git add reports/
-          # Só faz commit se houver mudanças (evita commit vazio)
           if git diff --staged --quiet; then
-            echo "Nenhuma mudança nos relatórios para commitar."
+            echo "Nenhuma mudança para commitar."
           else
             git commit -m "📊 Schema Report — $(date +'%Y-%m-%d') [bot]"
             git push
-            echo "✅ Relatório commitado e enviado para o repositório."
+            echo "✅ Relatório commitado e enviado."
           fi
 
-      # ─── 7. Notificação de falha ───────────────────────────────────────────
-      - name: 🚨 Notificar falha via Issue (em caso de erro no workflow)
+      - name: 🚨 Notificar falha (se houver erro no workflow)
         if: failure()
         uses: actions/github-script@v7
         with:
@@ -101,6 +91,6 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: '🚨 Falha no Monitoramento de Schema — ' + new Date().toLocaleDateString('pt-BR'),
-              body: `O workflow de monitoramento de schema markup falhou.\n\n**Run:** ${context.runId}\n**Link:** https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}\n\nVerifique os logs para detalhes.`,
+              body: `Workflow falhou.\n\n**Run:** ${context.runId}\n**Link:** https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
               labels: ['schema-report', 'bug']
             });
