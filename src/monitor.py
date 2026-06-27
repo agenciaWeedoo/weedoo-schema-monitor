@@ -479,15 +479,24 @@ def extrair_metadados_pagina(html: str, url: str) -> dict:
             el = soup.find("meta", attrs={"name": name})
         return (el.get("content") or "").strip() if el else ""
 
-    # Título: prioridade og:title > <title> > <h1>
+    # Título: prioridade og:title > <title> (limpo) > <h1> > slug
     titulo = _meta(prop="og:title")
     if not titulo and soup.title:
-        titulo = soup.title.get_text()
-        for sep in [" | Weedoo", " - Weedoo", "| Weedoo", "– Weedoo", " — Weedoo"]:
+        titulo = soup.title.get_text().strip()
+        # Remover sufixo do site do título
+        for sep in [" | Weedoo", " - Weedoo", "| Weedoo", "– Weedoo", " — Weedoo",
+                    " | weedoo.med.br", " - weedoo.med.br"]:
             titulo = titulo.replace(sep, "").strip()
+        # Remover separadores no início
+        titulo = titulo.lstrip("|-–— ").strip()
     if not titulo:
         h1 = soup.find("h1")
         titulo = h1.get_text().strip() if h1 else ""
+    # Último fallback: converter slug para título legível
+    if not titulo and "/" in url:
+        slug = [p for p in url.split("/") if p and "." not in p]
+        if slug:
+            titulo = slug[-1].replace("-", " ").replace("_", " ").capitalize()
 
     descricao = _meta(prop="og:description") or _meta(name="description")
     imagem = _meta(prop="og:image")
@@ -547,7 +556,7 @@ def _classificar_tipo_pagina(url: str) -> str:
     return "pagina_generica"
 
 
-def analisar_pagina_weedoo(url: str) -> dict:
+def analisar_pagina_weedoo(url: str, tipo_forcado: str | None = None) -> dict:
     """
     Analisa todos os dados estruturados de uma página da Weedoo.
     Valida campos, verifica schemas esperados e retorna resultado completo.
@@ -559,7 +568,7 @@ def analisar_pagina_weedoo(url: str) -> dict:
         Dicionário com schemas encontrados, erros, avisos e metadados.
     """
     logger.info("🔍 Analisando: %s", url)
-    tipo_pagina = _classificar_tipo_pagina(url)
+    tipo_pagina = tipo_forcado or _classificar_tipo_pagina(url)
 
     resultado: dict = {
         "url": url,
@@ -648,8 +657,11 @@ def main() -> None:
     # ── ETAPA 3: Analisar schemas da Weedoo ───────────────────────────────────
     logger.info("\n🔬 ETAPA 3/6 — Analisando schemas das páginas Weedoo...")
     resultados_weedoo: list[dict] = []
+    # URLs do sitemap são sempre posts — forçar classificação como "artigo"
+    urls_sitemap_set = set(urls_sitemap)
     for url in todas_urls:
-        resultado = analisar_pagina_weedoo(url)
+        tipo_f = "artigo" if url in urls_sitemap_set else None
+        resultado = analisar_pagina_weedoo(url, tipo_forcado=tipo_f)
         resultados_weedoo.append(resultado)
 
     erros_total = sum(len(r["todos_erros"]) for r in resultados_weedoo)
