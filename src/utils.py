@@ -69,18 +69,22 @@ def checar_robots(url: str) -> bool:
     robots_url = f"{parsed.scheme}://{parsed.netloc}/robots.txt"
 
     if robots_url not in _cache_robots:
-        rp = RobotFileParser()
-        rp.set_url(robots_url)
-        try:
-            rp.read()
-            _cache_robots[robots_url] = rp
-            logger.debug("robots.txt carregado: %s", robots_url)
-        except Exception as exc:
-            logger.warning(
-                "Não foi possível ler robots.txt de %s: %s. "
-                "Assumindo acesso permitido.",
-                robots_url, exc
-            )
+    rp = RobotFileParser()
+    rp.set_url(robots_url)
+    try:
+        import urllib.request as _req
+        opener = _req.build_opener()
+        opener.addheaders = [("User-Agent", USER_AGENT)]
+        _req.install_opener(opener)
+        rp.read()
+        _cache_robots[robots_url] = rp
+        logger.debug("robots.txt carregado: %s", robots_url)
+    except Exception as exc:
+        logger.warning(
+            "Não foi possível ler robots.txt de %s: %s. "
+            "Assumindo acesso permitido.",
+            robots_url, exc
+        )
             # Se não for possível ler, assume acesso permitido (padrão seguro)
             return True
 
