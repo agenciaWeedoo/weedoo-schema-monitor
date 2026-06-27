@@ -22,6 +22,7 @@ from utils import (
     HEADERS_PADRAO,
     agrupar_schemas_por_tipo,
     buscar_pagina,
+    buscar_via_wayback,
     extrair_schemas,
     obter_tipo_schema,
 )
@@ -150,6 +151,41 @@ def extrair_links_artigos_recentes(
 
 # ─── Análise de página do concorrente ─────────────────────────────────────────
 
+# Caminhos alternativos comuns para blogs em diferentes CMSs
+CAMINHOS_BLOG_ALTERNATIVOS = [
+    "/blog", "/artigos", "/conteudo", "/noticias", "/posts",
+    "/insights", "/recursos", "/aprenda", "/saude",
+]
+
+
+def _tentar_url_blog(home_url: str, blog_url: str, nome: str) -> str | None:
+    """
+    Tenta achar a URL real do blog de um concorrente quando a URL configurada
+    retorna 404. Testa caminhos alternativos comuns antes de desistir.
+    """
+    import requests as _req
+    from urllib.parse import urlparse as _up
+
+    base = _up(home_url).scheme + "://" + _up(home_url).netloc
+    for caminho in CAMINHOS_BLOG_ALTERNATIVOS:
+        tentativa = f"{base}{caminho}/"
+        if tentativa == blog_url.rstrip("/") + "/":
+            continue  # já tentamos essa
+        try:
+            import time
+            time.sleep(DELAY_SEGUNDOS)
+            r = _req.get(tentativa, headers=HEADERS_PADRAO, timeout=10, allow_redirects=True)
+            if r.status_code == 200:
+                logger.info(
+                    "  🔄 [%s] URL de blog corrigida: %s → %s",
+                    nome, blog_url, tentativa,
+                )
+                return tentativa
+        except Exception:
+            pass
+    return None
+
+
 def analisar_pagina_concorrente(url: str, nome_concorrente: str) -> dict:
     """
     Extrai e resume os schemas de uma única página do concorrente.
@@ -167,6 +203,7 @@ def analisar_pagina_concorrente(url: str, nome_concorrente: str) -> dict:
         "url": url,
         "concorrente": nome_concorrente,
         "acessivel": False,
+        "motivo_inacessivel": None,   # "robots_txt" | "http_erro" | "timeout"
         "tipos_encontrados": [],
         "schemas_detalhados": {},
         "tem_author": False,
@@ -176,10 +213,29 @@ def analisar_pagina_concorrente(url: str, nome_concorrente: str) -> dict:
         "tem_rich_snippets": False,    # FAQPage, HowTo, VideoObject, etc.
     }
 
-    html = buscar_pagina(url)
-    if not html:
-        logger.warning("  ⚠️  [%s] Página inacessível: %s", nome_concorrente, url)
-        return resultado
+    # Verificar robots.txt — se bloqueado, tentar Wayback Machine como fallback
+    from utils import checar_robots
+    html = None
+    if not checar_robots(url):
+        resultado["motivo_inacessivel"] = "robots_txt"
+        logger.warning(
+            "  ⚠️  [%s] Bloqueado por robots.txt: %s — tentando Wayback Machine...",
+            nome_concorrente, url,
+        )
+        html = buscar_via_wayback(url)
+        if html:
+            resultado["motivo_inacessivel"] = None
+            resultado["fonte"] = "wayback_machine"
+            logger.info("  📦 [%s] Dados obtidos via Wayback Machine (snapshot arquivado)", nome_concorrente)
+        else:
+            logger.warning("  ❌ [%s] Wayback Machine também indisponível: %s", nome_concorrente, url)
+            return resultado
+    else:
+        html = buscar_pagina(url)
+        if not html:
+            resultado["motivo_inacessivel"] = "http_erro"
+            logger.warning("  ⚠️  [%s] Página inacessível (HTTP): %s", nome_concorrente, url)
+            return resultado
 
     resultado["acessivel"] = True
     dados = extrair_schemas(html, url)
@@ -271,6 +327,14 @@ def comparar_concorrentes() -> list[dict]:
         # ── Blog + artigos recentes ────────────────────────────────────────────
         if blog_url:
             pagina_blog = analisar_pagina_concorrente(blog_url, nome)
+
+            # Se o blog retornou 404, tentar URLs alternativas
+            if not pagina_blog["acessivel"] and pagina_blog.get("motivo_inacessivel") == "http_erro":
+                url_alternativa = _tentar_url_blog(home_url, blog_url, nome)
+                if url_alternativa:
+                    blog_url = url_alternativa
+                    pagina_blog = analisar_pagina_concorrente(blog_url, nome)
+
             resultado_concorrente["paginas"].append(pagina_blog)
             resultado_concorrente["tipos_unicos"].update(pagina_blog["tipos_encontrados"])
             resultado_concorrente["paginas_analisadas"] += 1
