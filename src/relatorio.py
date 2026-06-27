@@ -1,6 +1,6 @@
 """
 relatorio.py — Geração do relatório Markdown e publicação no GitHub
-Weedoo Marketing Digital | Medicina Endocanabinoide
+Agência Weedoo - Marketing Digital | Medicina Endocanabinoide
 
 Gera schemas JSON-LD PERSONALIZADOS por página — prontos para copiar e colar.
 """
@@ -27,7 +27,7 @@ AUTOR = {
 
 PUBLISHER = {
     "@type": "Organization",
-    "name": "Weedoo",
+    "name": "Agência Weedoo",
     "url": "https://www.weedoo.med.br/",
     "logo": {
         "@type": "ImageObject",
@@ -677,75 +677,162 @@ def gerar_recomendacoes(resultados_weedoo: list[dict], comparacao: list[dict]) -
 
 # ─── Seção 5: Instruções de correção como blocos HTML ─────────────────────────
 
+def _schema_completo_para_pagina(r: dict) -> dict | None:
+    """Gera schema JSON-LD completo para uma página baseado em seu tipo."""
+    meta = r.get("metadados", {})
+    url = r["url"]
+    tipo_pg = r.get("tipo_pagina", "pagina_generica")
+    slug_titulo = [p for p in url.rstrip("/").split("/") if p and "." not in p]
+    slug_titulo = slug_titulo[-1].replace("-", " ").capitalize() if slug_titulo else "Página"
+    titulo = meta.get("titulo") or slug_titulo
+    descricao = meta.get("descricao") or f"Página sobre {titulo.lower()} — Weedoo, agência de marketing digital para medicina endocanabinoide."
+    data_pub = meta.get("data_publicacao") or date.today().strftime("%Y-%m-%dT08:00:00-03:00")
+    data_mod = meta.get("data_modificacao") or data_pub
+
+    if tipo_pg == "artigo":
+        return {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": titulo[:110],
+            "description": descricao[:200],
+            "image": {"@type": "ImageObject", "url": meta.get("imagem") or "https://www.weedoo.med.br/wp-content/uploads/og-weedoo.jpg", "width": 1200, "height": 630},
+            "datePublished": data_pub,
+            "dateModified": data_mod,
+            "mainEntityOfPage": {"@type": "WebPage", "@id": url},
+            "author": AUTOR,
+            "publisher": PUBLISHER,
+            "articleSection": "Cannabis Medicinal",
+            "inLanguage": "pt-BR",
+        }
+    elif tipo_pg == "home":
+        return {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "WebSite", "@id": "https://www.weedoo.med.br/#website",
+                    "name": "Weedoo — Marketing Digital para Medicina Endocanabinoide",
+                    "url": "https://www.weedoo.med.br/", "inLanguage": "pt-BR",
+                    "publisher": {"@id": "https://www.weedoo.med.br/#organization"},
+                    "potentialAction": {
+                        "@type": "SearchAction",
+                        "target": {"@type": "EntryPoint", "urlTemplate": "https://www.weedoo.med.br/?s={search_term_string}"},
+                        "query-input": "required name=search_term_string",
+                    },
+                },
+                {
+                    "@type": "Organization", "@id": "https://www.weedoo.med.br/#organization",
+                    "name": "Weedoo", "url": "https://www.weedoo.med.br/",
+                    "description": "Agência de marketing digital especializada em medicina endocanabinoide, compliance Anvisa/CFM e E-E-A-T.",
+                    "logo": PUBLISHER["logo"],
+                    "sameAs": ["https://www.linkedin.com/in/carlos-henrique-lopes-macedo/"],
+                    "knowsAbout": ["Marketing Digital", "Medicina Endocanabinoide", "Cannabis Medicinal", "SEO para Saúde", "E-E-A-T"],
+                },
+            ],
+        }
+    elif tipo_pg == "sobre":
+        return {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Carlos Macedo",
+            "url": url,
+            "description": "Especialista em marketing digital para medicina endocanabinoide. Fundador da Weedoo, une ciência comprovada e engenharia de marketing para clínicas e médicos no Brasil.",
+            "image": meta.get("imagem") or "https://www.weedoo.med.br/wp-content/uploads/carlos-macedo.jpg",
+            "jobTitle": "Especialista em Marketing Digital para Saúde",
+            "worksFor": {"@type": "Organization", "name": "Weedoo", "url": "https://www.weedoo.med.br/"},
+            "sameAs": [
+                "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
+                "https://agenciaweedoo.github.io/my-portifolio/",
+            ],
+        }
+    elif tipo_pg == "servicos":
+        return {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": titulo,
+            "url": url,
+            "description": descricao[:200],
+            "provider": {"@type": "Organization", "name": "Weedoo", "url": "https://www.weedoo.med.br/"},
+            "areaServed": "BR",
+            "serviceType": "Marketing Digital para Saúde",
+        }
+    else:
+        return {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": titulo,
+            "url": url,
+            "description": descricao[:200],
+            "inLanguage": "pt-BR",
+            "publisher": PUBLISHER,
+        }
+
+
 def gerar_instrucoes_correcao(resultados_weedoo: list[dict]) -> str:
-    linhas = ["## 🔧 Como Adicionar os Schemas no WordPress\n"]
+    linhas = ["## 🔧 Como Adicionar os Schemas no WordPress (Tema Astra Child)\n"]
 
     linhas += [
-        "### Método 1 — Plugin Insert Headers and Footers (recomendado para todos)",
-        "1. Instale: **Plugins → Adicionar Novo → buscar 'Insert Headers and Footers'**",
-        "2. Acesse: **Configurações → Insert Headers and Footers**",
-        "3. Cole o bloco HTML na seção **Scripts in Footer**",
-        "4. Para schemas específicos por página: use o plugin **WPCode** (versão gratuita) com regras de exibição por URL",
+        "### Método recomendado — Bloco HTML Personalizado no Editor Gutenberg",
         "",
-        "### Método 2 — Rank Math SEO (recomendado para artigos)",
-        "1. Instale o **Rank Math SEO** (gratuito)",
-        "2. Edite o artigo → painel lateral **Schema** → **Custom Schema**",
-        "3. Cole apenas o conteúdo interno do JSON (sem a tag `<script>`)",
+        "Como você usa o **tema Astra com child theme**, o método mais seguro e direto "
+        "é via editor de blocos do próprio WordPress — sem risco de afetar o tema pai "
+        "e sem necessidade de plugins adicionais:",
         "",
-        "### Validação após adicionar",
-        "- [Rich Results Test (Google)](https://search.google.com/test/rich-results) ← **obrigatório antes de publicar**",
-        "- [Schema Markup Validator](https://validator.schema.org/)",
+        "**Passo a passo para cada página ou post:**",
+        "1. No painel do WordPress, acesse **Páginas** ou **Posts** e clique em **Editar** na página desejada",
+        "2. No editor Gutenberg, clique no botão **+** (Adicionar Bloco) — pode estar no topo ou entre blocos",
+        "3. Na barra de pesquisa de blocos, digite **HTML** e selecione **HTML Personalizado**",
+        "4. Cole o bloco `<script type=\"application/ld+json\">...</script>` completo dentro do bloco HTML",
+        "5. Posicione o bloco ao **final da página**, antes do rodapé (arraste ou use as setas de mover bloco)",
+        "6. Clique em **Atualizar** (página já publicada) ou **Publicar** (rascunho)",
+        "7. Após salvar, valide em: [Rich Results Test do Google](https://search.google.com/test/rich-results)",
+        "",
+        "> 💡 **Dica Astra Child:** como seu child theme já herda todos os estilos do pai, "
+        "adicionar JSON-LD via bloco Gutenberg é 100% seguro — não afeta layout, "
+        "não quebra atualizações do tema e funciona independente de qualquer personalização.",
         "",
         "---",
         "### Checklist de Correção por Página\n",
+        "> ⬇️ Para cada página: copie o **Bloco HTML de Correção**, abra a página no WordPress, "
+        "adicione um bloco **HTML Personalizado** ao final e cole o código. Clique em Atualizar.\n",
     ]
 
-    paginas_com_erros = [r for r in resultados_weedoo if r.get("todos_erros") and r.get("acessivel")]
-    if not paginas_com_erros:
-        linhas.append("✅ **Nenhum erro crítico restante!** Continue monitorando semanalmente.\n")
+    # Incluir páginas com erros OU com avisos
+    paginas_com_problemas = [
+        r for r in resultados_weedoo
+        if (r.get("todos_erros") or r.get("todos_avisos")) and r.get("acessivel")
+    ]
+
+    if not paginas_com_problemas:
+        linhas.append("✅ **Nenhum erro ou aviso encontrado!** Continue monitorando semanalmente.\n")
         return "\n".join(linhas)
 
-    for r in paginas_com_erros:
-        url = _url_curta(r["url"])
+    for r in paginas_com_problemas:
+        url_c = _url_curta(r["url"])
         erros = r.get("todos_erros", [])
+        avisos = r.get("todos_avisos", [])
         meta = r.get("metadados", {})
-        titulo = meta.get("titulo", url)
 
-        linhas.append(f"#### `{url}` — {_nivel_criticidade(len(erros))}\n")
-        linhas.append(f"**{len(erros)} erro(s) a corrigir:**\n")
+        linhas.append(f"#### `{url_c}` — {_nivel_criticidade(len(erros))}\n")
 
-        for i, erro in enumerate(erros, 1):
-            linhas.append(f"{i}. {erro}")
-        linhas.append("")
+        if erros:
+            linhas.append(f"**{len(erros)} erro(s) crítico(s):**")
+            for i, e in enumerate(erros, 1):
+                linhas.append(f"{i}. 🔴 {e}")
+            linhas.append("")
 
-        # Gerar bloco HTML de correção focado nos erros
-        erros_autor = [e for e in erros if "author" in e.lower() or "carlos" in e.lower() or "sameas" in e.lower()]
-        erros_publisher = [e for e in erros if "publisher" in e.lower()]
+        if avisos:
+            linhas.append(f"**{len(avisos)} ponto(s) de atenção:**")
+            for i, a in enumerate(avisos, 1):
+                linhas.append(f"{i}. 🟡 {a}")
+            linhas.append("")
 
-        if erros_autor or erros_publisher:
-            linhas.append("**Bloco HTML de correção — adicione ao final desta página:**\n")
-            tipo_pg = r.get("tipo_pagina", "artigo")
-            data_pub = meta.get("data_publicacao") or date.today().strftime("%Y-%m-%dT08:00:00-03:00")
-            schema_correcao = {
-                "@context": "https://schema.org",
-                "@type": "Article",
-                "headline": (meta.get("titulo") or titulo)[:110],
-                "mainEntityOfPage": {"@type": "WebPage", "@id": r["url"]},
-                "datePublished": data_pub,
-                "dateModified": meta.get("data_modificacao") or data_pub,
-                "author": AUTOR,
-                "publisher": PUBLISHER,
-            }
-            if meta.get("imagem"):
-                schema_correcao["image"] = {"@type": "ImageObject", "url": meta["imagem"]}
-
-            linhas.append(_bloco_html(schema_correcao, f"Correção E-E-A-T — {url}"))
+        schema_correcao = _schema_completo_para_pagina(r)
+        if schema_correcao:
+            linhas.append("**Bloco HTML — cole no editor desta página (bloco HTML Personalizado):**\n")
+            linhas.append(_bloco_html(schema_correcao, f"Schema completo — {url_c}"))
             linhas.append("")
 
     return "\n".join(linhas)
-
-
-# ─── Montagem do relatório completo ───────────────────────────────────────────
 
 def gerar_relatorio(resultados_weedoo: list[dict], comparacao: list[dict]) -> str:
     hoje_fmt = date.today().strftime("%d/%m/%Y")
