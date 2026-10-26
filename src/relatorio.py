@@ -95,6 +95,11 @@ FAQS_PADRAO = [
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
 
+def _foi_lido(c: dict) -> bool:
+    """Concorrente com ao menos uma página efetivamente lida nesta rodada."""
+    return any(p.get("acessivel") for p in c.get("paginas", []) if p)
+
+
 def _sim_nao(cond: bool) -> str:
     return "✅" if cond else "❌"
 
@@ -264,21 +269,36 @@ def gerar_sumario_executivo(resultados_weedoo: list[dict], comparacao: list[dict
         tipos_weedoo.update(r.get("tipos_presentes", []))
     tipos_weedoo.discard("Desconhecido")
 
+    lidos = [c for c in comparacao if _foi_lido(c)]
+    nao_lidos = [c["nome"] for c in comparacao if not _foi_lido(c)]
+
     tipos_concorrentes: set[str] = set()
-    for c in comparacao:
+    for c in lidos:
         tipos_concorrentes.update(c.get("tipos_unicos", []))
 
     lacunas = sorted(tipos_concorrentes - tipos_weedoo - {"Desconhecido"})
-    conc_com_eeeat = sum(1 for c in comparacao if c.get("tem_eeeat"))
+    conc_com_eeeat = sum(1 for c in lidos if c.get("tem_eeeat"))
 
-    if lacunas:
+    if not lidos:
+        txt_conc = (
+            "**Nenhum concorrente pôde ser lido nesta rodada** "
+            f"({', '.join(nao_lidos)}), então não há comparação válida esta semana."
+        )
+    else:
+        txt_conc = f"Em relação à concorrência, **{conc_com_eeeat} de {len(lidos)} concorrentes lidos** implementam E-E-A-T básico (autor + publisher)."
+        if nao_lidos:
+            txt_conc += f" Não lidos nesta rodada: {', '.join(nao_lidos)}."
+
+    if not lidos:
+        txt_lacunas = ""
+    elif lacunas:
         txt_lacunas = f"A Weedoo **não utiliza** {len(lacunas)} tipo(s) de schema já adotados por concorrentes: `{'`, `'.join(lacunas)}`."
     else:
         txt_lacunas = "A Weedoo cobre **todos os tipos** de schema utilizados pelos concorrentes monitorados."
 
     return f"""## 📊 Sumário Executivo
 
-Auditoria de **{date.today().strftime('%d/%m/%Y')}** — **{total_urls} páginas** ({acessiveis} acessíveis) e **{len(comparacao)} concorrentes** analisados. Encontrados **{total_erros} erros** e **{total_avisos} avisos**. Dos **{artigos} artigos** do blog, **{artigos_com_schema} possuem** schema de artigo implementado. Em relação à concorrência, **{conc_com_eeeat} de {len(comparacao)} concorrentes** implementam E-E-A-T básico (autor + publisher). {txt_lacunas} Os schemas abaixo já estão **preenchidos com os dados reais de cada página** — basta copiar, colar e publicar.
+Auditoria de **{date.today().strftime('%d/%m/%Y')}** — **{total_urls} páginas** ({acessiveis} acessíveis) e **{len(comparacao)} concorrentes** configurados. Encontrados **{total_erros} erros** e **{total_avisos} avisos**. Dos **{artigos} artigos** do blog, **{artigos_com_schema} possuem** schema de artigo implementado. {txt_conc} {txt_lacunas} Os schemas abaixo já estão **preenchidos com os dados reais de cada página** — basta copiar, colar e publicar.
 
 """
 
@@ -331,8 +351,12 @@ def gerar_tabela_comparativa(resultados_weedoo: list[dict], comparacao: list[dic
 
     todos_tipos: set[str] = set(tipos_weedoo)
     for c in comparacao:
-        todos_tipos.update(c.get("tipos_unicos", []))
+        if _foi_lido(c):
+            todos_tipos.update(c.get("tipos_unicos", []))
     todos_tipos.discard("Desconhecido")
+
+    def _col(c: dict, valor: bool) -> str:
+        return _sim_nao(valor) if _foi_lido(c) else "—"
 
     nomes = [c["nome"] for c in comparacao]
     sep = " | ".join(["--------"] * len(nomes))
@@ -342,10 +366,16 @@ def gerar_tabela_comparativa(resultados_weedoo: list[dict], comparacao: list[dic
 
     for tipo in sorted(todos_tipos):
         w = _sim_nao(tipo in tipos_weedoo)
-        cols = [_sim_nao(tipo in c.get("tipos_unicos", [])) for c in comparacao]
+        cols = [_col(c, tipo in c.get("tipos_unicos", [])) for c in comparacao]
         linhas.append(f"| `{tipo}` | {w} | {' | '.join(cols)} |")
 
     linhas.append("")
+    nao_lidos = [c["nome"] for c in comparacao if not _foi_lido(c)]
+    if nao_lidos:
+        linhas.append(
+            f"> — = página não lida nesta rodada (bloqueio, erro HTTP ou conexão): {', '.join(nao_lidos)}. "
+            "Ausência de leitura não é ausência de schema.\n"
+        )
 
     # Concorrentes bloqueados por robots.txt
     bloqueados = [
@@ -376,7 +406,7 @@ def gerar_tabela_comparativa(resultados_weedoo: list[dict], comparacao: list[dic
         ("Rich snippets (FAQ/HowTo/Video)", w_faq, "tem_rich_snippets"),
         ("BreadcrumbList", w_breadcrumb, None),
     ]:
-        cols = [_sim_nao(c.get(campo, False)) if campo else _sim_nao("BreadcrumbList" in c.get("tipos_unicos", [])) for c in comparacao]
+        cols = [_col(c, c.get(campo, False)) if campo else _col(c, "BreadcrumbList" in c.get("tipos_unicos", [])) for c in comparacao]
         linhas.append(f"| {descricao} | {weedoo_val} | {' | '.join(cols)} |")
 
     linhas.append("")
@@ -882,6 +912,71 @@ def salvar_relatorio(relatorio_md: str, reports_dir: Path) -> Path:
     with open(caminho, "w", encoding="utf-8") as f:
         f.write(relatorio_md)
     logger.info("✅ Relatório salvo: %s", caminho)
+    return caminho
+
+
+def salvar_dados_json(resultados_weedoo: list[dict], comparacao: list[dict], reports_dir: Path) -> Path:
+    """
+    Grava os dados da rodada em JSON, para leitura por máquina — é o que o
+    agente do Índice de Visibilidade (segunda-feira) consome.
+
+    Gera dois arquivos com o mesmo conteúdo:
+      reports/AAAA-MM-DD-dados.json — histórico
+      reports/ultimo.json           — caminho fixo da rodada mais recente
+    """
+    def _pagina_weedoo(r: dict) -> dict:
+        return {
+            "url": r.get("url"),
+            "url_final": r.get("url_final"),
+            "tipo_pagina": r.get("tipo_pagina"),
+            "acessivel": r.get("acessivel"),
+            "bloqueio": r.get("bloqueio"),
+            "tipos": r.get("tipos_presentes", []),
+            "erros": r.get("todos_erros", []),
+            "avisos": r.get("todos_avisos", []),
+        }
+
+    def _pagina_concorrente(p: dict) -> dict:
+        return {
+            "url": p.get("url"),
+            "acessivel": p.get("acessivel"),
+            "bloqueio": p.get("motivo_inacessivel"),
+            "tipos": p.get("tipos_encontrados", []),
+            "tem_author": p.get("tem_author"),
+            "tem_publisher": p.get("tem_publisher"),
+            "tem_medical_schema": p.get("tem_medical_schema"),
+        }
+
+    dados = {
+        "versao_formato": 1,
+        "data": date.today().isoformat(),
+        "gerado_por": "WeedooSEOMonitorBot",
+        "weedoo": {
+            "paginas": [_pagina_weedoo(r) for r in resultados_weedoo],
+            "tipos": sorted({t for r in resultados_weedoo for t in r.get("tipos_presentes", [])}),
+            "total_erros": sum(len(r.get("todos_erros", [])) for r in resultados_weedoo),
+        },
+        "concorrentes": [
+            {
+                "nome": c.get("nome"),
+                "home": c.get("home_url"),
+                "blog": c.get("blog_url"),
+                "paginas_lidas": sum(1 for p in c.get("paginas", []) if p.get("acessivel")),
+                "paginas_tentadas": len(c.get("paginas", [])),
+                "tipos": list(c.get("tipos_unicos", [])),
+                "tem_eeat": c.get("tem_eeeat"),
+                "tem_medical_schema": c.get("tem_medical_schema"),
+                "tem_rich_snippets": c.get("tem_rich_snippets"),
+                "paginas": [_pagina_concorrente(p) for p in c.get("paginas", [])],
+            }
+            for c in comparacao
+        ],
+    }
+
+    texto = json.dumps(dados, ensure_ascii=False, indent=2)
+    caminho = reports_dir / f"{date.today().isoformat()}-dados.json"
+    caminho.write_text(texto, encoding="utf-8")
+    (reports_dir / "ultimo.json").write_text(texto, encoding="utf-8")
     return caminho
 
 

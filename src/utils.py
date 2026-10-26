@@ -36,7 +36,10 @@ HEADERS_PADRAO: dict[str, str] = {
     "User-Agent": USER_AGENT,
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.5",
-    "Accept-Encoding": "gzip, deflate, br",
+    # Sem "br": o requests só descomprime Brotli com o pacote brotli instalado.
+    # Com "br", o Cloudflare devolvia HTML comprimido ilegível e o monitor
+    # concluía (errado) que as páginas não tinham dados estruturados.
+    "Accept-Encoding": "gzip, deflate",
     "DNT": "1",
     "Connection": "keep-alive",
     "Upgrade-Insecure-Requests": "1",
@@ -69,59 +72,86 @@ def checar_robots(url: str) -> bool:
     robots_url = f"{parsed.scheme}://{parsed.netloc}/robots.txt"
 
     if robots_url not in _cache_robots:
-    rp = RobotFileParser()
-    rp.set_url(robots_url)
-    try:
-        import urllib.request as _req
-        opener = _req.build_opener()
-        opener.addheaders = [("User-Agent", USER_AGENT)]
-        _req.install_opener(opener)
-        rp.read()
-        _cache_robots[robots_url] = rp
-        logger.debug("robots.txt carregado: %s", robots_url)
-    except Exception as exc:
-        logger.warning(
-            "Não foi possível ler robots.txt de %s: %s. "
-            "Assumindo acesso permitido.",
-            robots_url, exc
-        )
+        rp = RobotFileParser()
+        rp.set_url(robots_url)
+        try:
+            import urllib.request as _req
+            opener = _req.build_opener()
+            opener.addheaders = [("User-Agent", USER_AGENT)]
+            _req.install_opener(opener)
+            rp.read()
+            _cache_robots[robots_url] = rp
+            logger.debug("robots.txt carregado: %s", robots_url)
+        except Exception as exc:
+            logger.warning(
+                "Não foi possível ler robots.txt de %s: %s. "
+                "Assumindo acesso permitido.",
+                robots_url, exc
+            )
             # Se não for possível ler, assume acesso permitido (padrão seguro)
             return True
 
     return _cache_robots[robots_url].can_fetch(USER_AGENT, url)
 
 
-def buscar_pagina(url: str, timeout: int = 20) -> str | None:
-    """
-    Busca o HTML de uma página com delay ético e respeitando robots.txt.
+_SINAIS_DESAFIO_CLOUDFLARE = (
+    "cf-chl-",              # formulário/JS do desafio
+    "Just a moment...",     # título da página de desafio
+    "Attention Required! | Cloudflare",
+)
 
-    Args:
-        url: URL completa da página a ser buscada.
-        timeout: Segundos máximos de espera pela resposta.
+
+def buscar_pagina_info(url: str, timeout: int = 20) -> dict:
+    """
+    Busca uma página com delay ético e respeitando robots.txt, e devolve
+    o contexto da resposta — não só o HTML.
 
     Returns:
-        String com o HTML da página, ou None em caso de erro/bloqueio.
+        Dicionário com:
+          html      — HTML da página, ou None
+          status    — código HTTP (None se não houve resposta)
+          url_final — URL depois dos redirecionamentos
+          bloqueio  — None | "robots_txt" | "cloudflare" | "http_erro" | "timeout" | "conexao"
     """
+    info: dict = {"html": None, "status": None, "url_final": url, "bloqueio": None}
+
     if not checar_robots(url):
         logger.warning("Acesso bloqueado pelo robots.txt: %s", url)
-        return None
+        info["bloqueio"] = "robots_txt"
+        return info
 
     try:
         time.sleep(DELAY_SEGUNDOS)
         logger.debug("Buscando: %s", url)
         resposta = requests.get(url, headers=HEADERS_PADRAO, timeout=timeout)
-        resposta.raise_for_status()
+        info["status"] = resposta.status_code
+        info["url_final"] = resposta.url
 
         # Detectar encoding para evitar problemas com caracteres especiais
         if resposta.encoding is None or resposta.encoding.lower() in ("iso-8859-1", "latin-1"):
             resposta.encoding = resposta.apparent_encoding or "utf-8"
 
-        return resposta.text
+        # Página de desafio do Cloudflare: não é a página real, então não pode
+        # ser lida como "página sem dados estruturados".
+        if resposta.status_code in (403, 503) and any(
+            s in resposta.text for s in _SINAIS_DESAFIO_CLOUDFLARE
+        ):
+            logger.error(
+                "Desafio do Cloudflare em %s — a página real não foi lida. "
+                "Libere o User-Agent WeedooSEOMonitorBot numa regra do WAF.", url,
+            )
+            info["bloqueio"] = "cloudflare"
+            return info
+
+        resposta.raise_for_status()
+        info["html"] = resposta.text
 
     except requests.exceptions.Timeout:
         logger.error("Timeout ao buscar %s (>%ds)", url, timeout)
+        info["bloqueio"] = "timeout"
     except requests.exceptions.ConnectionError:
         logger.error("Erro de conexão ao buscar %s", url)
+        info["bloqueio"] = "conexao"
     except requests.exceptions.HTTPError as exc:
         codigo = exc.response.status_code
         dica = ""
@@ -132,10 +162,23 @@ def buscar_pagina(url: str, timeout: int = 20) -> str | None:
         elif codigo == 429:
             dica = " — rate limit, aumente DELAY_SEGUNDOS em utils.py"
         logger.error("Erro HTTP %d ao buscar %s%s", codigo, url, dica)
+        info["bloqueio"] = "http_erro"
     except requests.exceptions.RequestException as exc:
         logger.error("Erro inesperado ao buscar %s: %s", url, exc)
+        info["bloqueio"] = "conexao"
 
-    return None
+    return info
+
+
+def buscar_pagina(url: str, timeout: int = 20) -> str | None:
+    """
+    Busca o HTML de uma página com delay ético e respeitando robots.txt.
+    Atalho para buscar_pagina_info() quando só o HTML interessa.
+
+    Returns:
+        String com o HTML da página, ou None em caso de erro/bloqueio.
+    """
+    return buscar_pagina_info(url, timeout)["html"]
 
 
 def extrair_schemas(html: str, url: str) -> dict:
@@ -166,13 +209,10 @@ def extrair_schemas(html: str, url: str) -> dict:
 
 def obter_tipo_schema(item: dict) -> str:
     """
-    Retorna o @type de um item de schema, normalizando listas para string.
-    Ex.: ["Article", "NewsArticle"] → "Article"
+    Retorna o @type principal de um item de schema.
+    Ex.: ["Article", "NewsArticle"] → "Article". Para todos, use obter_tipos_schema().
     """
-    tipo = item.get("@type", "Desconhecido")
-    if isinstance(tipo, list):
-        return tipo[0] if tipo else "Desconhecido"
-    return str(tipo) if tipo else "Desconhecido"
+    return obter_tipos_schema(item)[0]
 
 
 def agrupar_schemas_por_tipo(items: list[dict]) -> dict[str, list[dict]]:
@@ -181,72 +221,103 @@ def agrupar_schemas_por_tipo(items: list[dict]) -> dict[str, list[dict]]:
     Útil para verificar rapidamente se um tipo específico está presente.
     """
     grupos: dict[str, list[dict]] = {}
-    for item in items:
-        tipo = obter_tipo_schema(item)
-        grupos.setdefault(tipo, []).append(item)
+    for item in expandir_itens(items):
+        for tipo in obter_tipos_schema(item):
+            grupos.setdefault(tipo, []).append(item)
     return grupos
 
 
-# ─── Wayback Machine (archive.org) ────────────────────────────────────────────
+# ─── Normalização dos itens extraídos ─────────────────────────────────────────
 
-def buscar_via_wayback(url: str, timeout: int = 25) -> str | None:
+# Tipos do schema.org que descrevem a moldura da página (cabeçalho, rodapé,
+# bloco de anúncio) e não rendem rich result. Ficam fora das comparações.
+TIPOS_ESTRUTURAIS = frozenset({"WPAdBlock", "WPHeader", "WPFooter", "WPSideBar", "SiteNavigationElement"})
+
+
+def expandir_itens(items: list) -> list[dict]:
     """
-    Busca uma versão arquivada da URL via Wayback Machine (archive.org).
-
-    Estratégia para sites que bloqueiam bots via robots.txt:
-    - Gratuito, sem chave de API.
-    - Busca o snapshot mais recente disponível (últimos 6 meses).
-    - O arquivo histórico não está sujeito ao robots.txt do site original.
-    - Dados de schema mudam lentamente — uma versão de semanas atrás é válida para auditoria.
-
-    Returns:
-        HTML do snapshot arquivado, ou None se não houver snapshot disponível.
+    Abre os blocos com @graph (formato usado por Yoast, RankMath e pelo tema
+    da Weedoo) em itens individuais. Sem isso, um @graph inteiro com
+    Organization, WebSite, Person, FAQPage etc. vira um único item sem @type
+    e nada dentro dele é validado.
     """
-    try:
-        # 1. Consultar a API de disponibilidade do Wayback Machine
-        time.sleep(DELAY_SEGUNDOS)
-        from datetime import date as _date
-        timestamp_hoje = _date.today().strftime("%Y%m%d")
-        api_url = (
-            f"https://archive.org/wayback/available"
-            f"?url={url}&timestamp={timestamp_hoje}"
-        )
-        resp_api = requests.get(api_url, headers=HEADERS_PADRAO, timeout=15)
-        resp_api.raise_for_status()
+    saida: list[dict] = []
+    pilha = list(items)
+    while pilha:
+        item = pilha.pop(0)
+        if isinstance(item, list):
+            pilha[0:0] = item
+            continue
+        if not isinstance(item, dict):
+            continue
+        grafo = item.get("@graph")
+        if isinstance(grafo, list):
+            pilha[0:0] = grafo
+            if not item.get("@type"):
+                continue
+        saida.append(item)
+    return saida
 
-        dados = resp_api.json()
-        snapshot = dados.get("archived_snapshots", {}).get("closest", {})
 
-        if not snapshot.get("available"):
-            logger.info("📦 Wayback: sem snapshot disponível para %s", url)
-            return None
+def obter_tipos_schema(item: dict) -> list[str]:
+    """
+    Todos os @type de um item, sem prefixo de URL.
+    Ex.: ["Organization", "ProfessionalService"] → os dois, não só o primeiro.
+    """
+    tipo = item.get("@type")
+    tipos = tipo if isinstance(tipo, list) else [tipo]
+    limpos = []
+    for t in tipos:
+        if not t:
+            continue
+        t = str(t).rsplit("/", 1)[-1]  # "http://schema.org/Article" → "Article"
+        if t not in limpos:
+            limpos.append(t)
+    return limpos or ["Desconhecido"]
 
-        wayback_url = snapshot["url"]
-        ts = snapshot.get("timestamp", "?")[:8]
-        logger.info("📦 Wayback: snapshot de %s/%s/%s encontrado", ts[:4], ts[4:6], ts[6:8])
 
-        # 2. Usar versão "raw" (sem barra de navegação do Wayback, HTML limpo)
-        # Formato: https://web.archive.org/web/TIMESTAMP/URL
-        # Com "id_" o Wayback não injeta seu próprio HTML no topo
-        wayback_url_raw = wayback_url.replace(
-            "/web/", "/web/id_/", 1
-        )
+def mesclar_por_id(items: list[dict]) -> tuple[list[dict], dict[str, dict]]:
+    """
+    Junta nós que declaram o mesmo @id (no JSON-LD eles são o MESMO objeto,
+    como o Google também entende) e devolve (itens, índice por @id).
 
-        # 3. Buscar o conteúdo do snapshot
-        time.sleep(DELAY_SEGUNDOS)
-        resp = requests.get(wayback_url_raw, headers=HEADERS_PADRAO, timeout=timeout)
-        resp.raise_for_status()
+    Itens sem nenhuma propriedade além de @type (ex.: o <body itemscope
+    itemtype="WebPage"> de muitos temas) são descartados: não dizem nada.
+    """
+    indice: dict[str, dict] = {}
+    saida: list[dict] = []
+    for item in items:
+        if not any(k for k in item if not k.startswith("@")) and "@id" not in item:
+            continue
+        ident = item.get("@id")
+        if not ident:
+            saida.append(dict(item))
+            continue
+        if ident not in indice:
+            novo = dict(item)
+            indice[ident] = novo
+            saida.append(novo)
+            continue
+        alvo = indice[ident]
+        tipos = obter_tipos_schema(alvo) + [t for t in obter_tipos_schema(item) if t not in obter_tipos_schema(alvo)]
+        tipos = [t for t in tipos if t != "Desconhecido"]
+        for k, v in item.items():
+            if k not in alvo or alvo[k] in ("", [], {}, None):
+                alvo[k] = v
+        if tipos:
+            alvo["@type"] = tipos if len(tipos) > 1 else tipos[0]
+    return saida, indice
 
-        if resp.encoding is None or resp.encoding.lower() in ("iso-8859-1", "latin-1"):
-            resp.encoding = resp.apparent_encoding or "utf-8"
 
-        return resp.text
-
-    except requests.exceptions.HTTPError as exc:
-        logger.warning("📦 Wayback HTTP %d para %s", exc.response.status_code, url)
-    except requests.exceptions.Timeout:
-        logger.warning("📦 Wayback timeout para %s", url)
-    except Exception as exc:
-        logger.warning("📦 Wayback falhou para %s: %s", url, exc)
-
-    return None
+def resolver_referencia(valor, indice: dict[str, dict]):
+    """
+    Troca {"@id": "..."} pelo nó completo do índice, quando existir.
+    Funciona com objeto único ou lista. Mantém o valor original se não achar.
+    """
+    def _um(v):
+        if isinstance(v, dict) and set(v.keys()) <= {"@id", "@type"} and v.get("@id") in indice:
+            return indice[v["@id"]]
+        return v
+    if isinstance(valor, list):
+        return [_um(v) for v in valor]
+    return _um(valor)

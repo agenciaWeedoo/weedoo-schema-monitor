@@ -16,7 +16,8 @@ Toda **segunda-feira às 06:00 BRT** (via GitHub Actions, 100% gratuito), o bot:
 3. **Compara** com 5 concorrentes (home + blog + 3 artigos recentes de cada)
 4. **Gera relatório** em Markdown com erros, avisos, tabelas comparativas e JSON-LDs prontos
 5. **Salva** o relatório em `/reports/YYYY-MM-DD-schema-report.md`
-6. **Publica** o relatório como Issue no GitHub com a label `schema-report`
+6. **Salva os dados da rodada em JSON** em `/reports/YYYY-MM-DD-dados.json` e `/reports/ultimo.json` (lidos pelo agente do Índice de Visibilidade, que roda na segunda às 9h)
+7. **Publica** o relatório como Issue no GitHub com a label `schema-report`
 
 ---
 
@@ -162,9 +163,25 @@ O agente segue boas práticas de scraping:
 - **Delay de 2 segundos** entre cada requisição
 - **Respeita robots.txt** de todos os domínios
 - **User-Agent identificado** como WeedooSEOMonitorBot
-- **Sem acesso forçado** a páginas bloqueadas
+- **Sem acesso forçado** a páginas bloqueadas: página vetada pelo robots.txt fica registrada como bloqueada (sem buscar cópias arquivadas)
+- **Página não lida ≠ página sem schema**: bloqueio do Cloudflare, erro HTTP ou falha de conexão aparecem como "não lido" (—) no relatório
 
 ---
+
+## ⚠️ Se o relatório disser que nenhuma página tem schema
+
+Quase sempre é o bot que não leu a página, não o site que está sem schema:
+
+1. **Desafio do Cloudflare** — o log mostra `Desafio do Cloudflare em ...`. Crie uma regra no WAF (Security → WAF → Custom rules) com ação *Skip* para `http.user_agent contains "WeedooSEOMonitorBot"`.
+2. **Compressão Brotli** — o `requests` só descomprime `br` com o pacote `brotli`. Por isso o bot pede só `gzip, deflate` (`HEADERS_PADRAO` em `utils.py`). Não volte a incluir `br` sem adicionar `brotli` ao `requirements.txt`.
+
+## Como o JSON-LD é lido
+
+- Blocos com `@graph` são abertos item a item.
+- Nós com o mesmo `@id` são juntados (são o mesmo objeto para o Google).
+- `author`, `publisher` e `reviewedBy` declarados como referência (`{"@id": ...}`) são resolvidos antes da validação.
+- Itens com vários `@type` (ex.: `Organization` + `ProfessionalService`) contam para todos.
+- `BlogPosting` e `NewsArticle` satisfazem a expectativa de `Article`.
 
 ## Schemas Validados
 
