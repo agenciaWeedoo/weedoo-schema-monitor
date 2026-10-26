@@ -1,27 +1,9 @@
 [
   {
-    "nome": "Rocket Med",
-    "home": "https://www.medrocket.com.br/",
-    "blog": "https://www.medrocket.com.br/index.html#cases",
-    "notas": "Agência de marketing médico — concorrente direto em estratégia digital para saúde"
-  },
-  {
-    "nome": "Anandamidia",
-    "home": "https://www.anandamidia.com.br",
-    "blog": "https://www.anandamidia.com.br/blog/",
-    "notas": "NOVO — Se autodeclara 'primeira agência de comunicação especializada em cannabis no Brasil'. Concorrente direto e altamente relevante para benchmarking de schema e E-E-A-T."
-  },
-  {
     "nome": "WeCann Academy",
     "home": "https://wecann.academy/",
     "blog": "https://wecann.academy/blog/",
     "notas": "Academia de educação em cannabis medicinal — forte em conteúdo educacional"
-  },
-  {
-    "nome": "Cannabis & Saúde",
-    "home": "https://www.cannabisesaude.com.br/",
-    "blog": "https://www.cannabisesaude.com.br/ultimas-noticias/",
-    "notas": "Portal de informação sobre cannabis medicinal no Brasil"
   },
   {
     "nome": "Dr. Cannabis",
@@ -34,5 +16,41 @@
     "home": "https://www.cannect.life/",
     "blog": "https://blog.cannect.life/",
     "notas": "ADICIONADO — Marketplace de cannabis medicinal com blog ativo sobre tratamentos; forte autoridade de domínio e presença em buscas de fundo de funil (ex.: 'comprar CBD')"
+  },
+  {
+    "nome": "Sechat",
+    "home": "https://sechat.com.br/",
+    "blog": "https://sechat.com.br/noticias",
+    "notas": "CANDIDATO (portal) — maior portal de notícias de cannabis medicinal e cânhamo; cobre pacientes, médicos e mercado"
+  },
+  {
+    "nome": "Cannabis Monitor",
+    "home": "https://cannabismonitor.com.br/",
+    "blog": "https://cannabismonitor.com.br/",
+    "notas": "CANDIDATO (portal) — notícias e análise do setor, voltado também a médicos"
+  },
+  {
+    "nome": "ConectaMed Web",
+    "home": "https://conectamedweb.com.br/",
+    "blog": "https://conectamedweb.com.br/blog/",
+    "notas": "CANDIDATO (agência) — marketing digital exclusivo para médicos prescritores de cannabis"
+  },
+  {
+    "nome": "Kaya Doc",
+    "home": "https://kayadoc.com.br/",
+    "blog": "https://kayadoc.com.br/blog/",
+    "notas": "CANDIDATO (prescritores) — plataforma da Kaya Mind para médicos prescritores; publica conteúdo de SEO e marketing para médicos"
+  },
+  {
+    "nome": "Kaya Mind",
+    "home": "https://kayamind.com/",
+    "blog": "https://kayamind.com/blog/",
+    "notas": "CANDIDATO (inteligência/conteúdo) — inteligência de mercado de cannabis; blog ativo com conteúdo de marketing para o setor"
+  },
+  {
+    "nome": "Click Cannabis",
+    "home": "https://clickcannabis.com/",
+    "blog": "https://clickcannabis.com/blog/",
+    "notas": "CANDIDATO (pacientes) — plataforma que conecta pacientes a prescritores"
   }
 ]

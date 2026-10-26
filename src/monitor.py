@@ -21,10 +21,10 @@ from bs4 import BeautifulSoup
 sys.path.insert(0, str(Path(__file__).parent))
 
 from utils import (
+    AUTOR_ID,
     AUTOR_NOME,
-    AUTOR_PORTFOLIO,
-    AUTOR_URL_SOBRE,
-    AUTOR_LINKEDIN,
+    AUTOR_TIPO,
+    AUTOR_URL,
     DELAY_SEGUNDOS,
     HEADERS_PADRAO,
     ORG_NOME,
@@ -203,8 +203,9 @@ def obter_urls_sitemap(
 
 def validar_autor(author_data: dict | list | None, url_pagina: str) -> tuple[list[str], list[str]]:
     """
-    Valida os dados do autor Carlos Macedo segundo os critérios E-E-A-T.
-    Verifica: nome, URL da página Sobre, LinkedIn e Portfólio no sameAs.
+    Valida o autor dos artigos segundo a regra da Weedoo: os artigos são
+    assinados pela organização Agência Weedoo (Organization), de preferência
+    pelo mesmo nó @id usado como publisher.
 
     Returns:
         Tupla (erros, avisos) — erros bloqueiam rich snippets, avisos são recomendações.
@@ -219,64 +220,65 @@ def validar_autor(author_data: dict | list | None, url_pagina: str) -> tuple[lis
     # Normalizar: author pode ser objeto único ou lista de objetos
     autores = author_data if isinstance(author_data, list) else [author_data]
 
-    encontrou_carlos = False
+    def _normaliza(txt: str) -> str:
+        import unicodedata
+        return unicodedata.normalize("NFKD", txt).encode("ascii", "ignore").decode().lower()
+
+    encontrou = False
     for autor in autores:
         if not isinstance(autor, dict):
             avisos.append(
                 f"'author' contém um valor não-objeto: {str(autor)[:60]!r}. "
-                "Deve ser um objeto Person."
+                f"Deve ser o objeto {AUTOR_TIPO} da {AUTOR_NOME}."
             )
             continue
 
-        nome = autor.get("name", "")
-        if "Carlos" in nome and "Macedo" in nome:
-            encontrou_carlos = True
+        nome = str(autor.get("name", ""))
+        if _normaliza(AUTOR_NOME) not in _normaliza(nome) and autor.get("@id") != AUTOR_ID:
+            continue
+        encontrou = True
 
-            # ── Verificar @type ────────────────────────────────────────────────
-            tipo_autor = str(autor.get("@type", ""))
-            if "Person" not in tipo_autor:
-                erros.append(
-                    f"author.@type deve ser 'Person', encontrado: {tipo_autor!r}"
-                )
-
-            # ── Verificar URL da página Sobre ──────────────────────────────────
-            url_autor = autor.get("url", "")
-            if not url_autor:
-                erros.append(
-                    "author.url ausente — deve apontar para a página Sobre do autor: "
-                    f"'{AUTOR_URL_SOBRE}'"
-                )
-            elif url_autor.rstrip("/") != AUTOR_URL_SOBRE.rstrip("/"):
-                erros.append(
-                    f"author.url incorreta.\n"
-                    f"  Esperado : {AUTOR_URL_SOBRE!r}\n"
-                    f"  Encontrado: {url_autor!r}"
-                )
-
-            # ── Verificar sameAs (LinkedIn e Portfólio) ────────────────────────
-            same_as_raw = autor.get("sameAs", [])
-            same_as: list[str] = (
-                [same_as_raw] if isinstance(same_as_raw, str) else same_as_raw
+        # ── Verificar @type ────────────────────────────────────────────────────
+        tipos_autor = autor.get("@type", "")
+        tipos_autor = tipos_autor if isinstance(tipos_autor, list) else [tipos_autor]
+        if not any(AUTOR_TIPO in str(t) for t in tipos_autor):
+            erros.append(
+                f"author.@type deve ser '{AUTOR_TIPO}', encontrado: {tipos_autor!r}"
             )
 
-            if AUTOR_LINKEDIN not in same_as:
-                erros.append(
-                    f"author.sameAs não contém o LinkedIn do {AUTOR_NOME}.\n"
-                    f"  Adicionar: {AUTOR_LINKEDIN!r}"
-                )
-            if AUTOR_PORTFOLIO not in same_as:
-                erros.append(
-                    f"author.sameAs não contém o portfólio do {AUTOR_NOME}.\n"
-                    f"  Adicionar: {AUTOR_PORTFOLIO!r}"
-                )
+        # ── Verificar URL ──────────────────────────────────────────────────────
+        url_autor = str(autor.get("url", ""))
+        if not url_autor:
+            erros.append(f"author.url ausente — deve apontar para '{AUTOR_URL}'")
+        elif url_autor.rstrip("/") != AUTOR_URL.rstrip("/"):
+            avisos.append(
+                f"author.url diferente do esperado.\n"
+                f"  Esperado : {AUTOR_URL!r}\n"
+                f"  Encontrado: {url_autor!r}"
+            )
 
-    if not encontrou_carlos:
+        # ── Mesmo nó do publisher ──────────────────────────────────────────────
+        if autor.get("@id") != AUTOR_ID:
+            avisos.append(
+                f"author não referencia o nó da organização ({AUTOR_ID!r}). "
+                "Use {\"@id\": \"" + AUTOR_ID + "\"} para autor e publisher serem o mesmo objeto."
+            )
+
+        # ── Perfis externos (sameAs) ───────────────────────────────────────────
+        same_as = autor.get("sameAs", [])
+        if not same_as:
+            avisos.append(
+                "author.sameAs vazio — inclua os perfis oficiais da agência "
+                "(Instagram, LinkedIn da empresa) para reforçar a entidade."
+            )
+
+    if not encontrou:
         nomes = [
-            a.get("name", "?") if isinstance(a, dict) else str(a)
+            (a.get("name") or a.get("@id") or "?") if isinstance(a, dict) else str(a)
             for a in autores
         ]
         erros.append(
-            f"Autor '{AUTOR_NOME}' não encontrado no campo 'author'. "
+            f"Autor esperado ('{AUTOR_NOME}', {AUTOR_TIPO}) não encontrado no campo 'author'. "
             f"Autores presentes: {nomes}"
         )
 

@@ -12,7 +12,7 @@
 Toda **segunda-feira às 06:00 BRT** (via GitHub Actions, 100% gratuito), o bot:
 
 1. **Extrai e valida** todos os dados estruturados (JSON-LD, Microdata) das páginas da Weedoo
-2. **Verifica E-E-A-T** do autor Carlos Macedo em todos os artigos (nome, URL Sobre, LinkedIn, Portfólio)
+2. **Verifica E-E-A-T** do autor dos artigos — a organização Agência Weedoo (tipo, URL, mesmo nó do publisher, perfis em `sameAs`)
 3. **Compara** com 5 concorrentes (home + blog + 3 artigos recentes de cada)
 4. **Gera relatório** em Markdown com erros, avisos, tabelas comparativas e JSON-LDs prontos
 5. **Salva** o relatório em `/reports/YYYY-MM-DD-schema-report.md`
@@ -110,11 +110,14 @@ Vá em `Actions → Monitoramento Semanal de Schema Markup → Run workflow`.
 
 ## 🔧 Personalização
 
-### Alterar a URL do LinkedIn do Carlos Macedo
+### Alterar o autor esperado dos artigos
 
-Edite a constante `AUTOR_LINKEDIN` em `src/utils.py`:
+Edite as constantes `AUTOR_*` em `src/utils.py`:
 ```python
-AUTOR_LINKEDIN = "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/"
+AUTOR_NOME = "Agência Weedoo"
+AUTOR_TIPO = "Organization"
+AUTOR_ID = "https://www.weedoo.med.br/#Organization"
+AUTOR_URL = "https://www.weedoo.med.br/"
 ```
 
 ### Adicionar novos concorrentes
@@ -187,7 +190,7 @@ Quase sempre é o bot que não leu a página, não o site que está sem schema:
 
 | Tipo | Campos Verificados |
 |------|--------------------|
-| `Article` | headline, author (Carlos Macedo + 3 links), datePublished, dateModified, publisher, image |
+| `Article` | headline, author (Agência Weedoo), datePublished, dateModified, publisher, image |
 | `WebSite` | name, url, potentialAction (SearchAction) |
 | `Organization` | name, url, logo, sameAs |
 | `Person` | name, url, sameAs |
@@ -200,16 +203,19 @@ Quase sempre é o bot que não leu a página, não o site que está sem schema:
 
 ---
 
-## 📝 Campos E-E-A-T Obrigatórios (Regra de Ouro)
+## 📝 Autor dos Artigos (Regra de Ouro)
 
-Todo artigo do blog **deve** ter o autor Carlos Macedo com os três links abaixo no campo `sameAs`:
+Desde 26/10/2026 todo artigo do blog é assinado pela **Agência Weedoo** (o redator escreve em nome da agência). O autor é o mesmo nó `Organization` usado como `publisher`:
 
-| Campo | Valor Esperado |
-|-------|----------------|
-| `author.name` | `Carlos Macedo` |
-| `author.url` | `https://www.weedoo.med.br/sobre/` |
-| `author.sameAs[0]` | `https://www.linkedin.com/in/carlos-henrique-lopes-macedo/` |
-| `author.sameAs[1]` | `https://agenciaweedoo.github.io/my-portifolio/` |
+| Campo | Valor Esperado | Gravidade |
+|-------|----------------|-----------|
+| `author.@type` | `Organization` | erro |
+| `author.name` | `Agência Weedoo` | erro |
+| `author.url` | `https://www.weedoo.med.br/` | erro se ausente, aviso se diferente |
+| `author.@id` | `https://www.weedoo.med.br/#Organization` (igual ao publisher) | aviso |
+| `author.sameAs` | perfis oficiais da agência | aviso se vazio |
+
+Em conteúdo clínico, `MedicalWebPage.reviewedBy` continua sendo o médico revisor — nunca a agência.
 
 ---
 
