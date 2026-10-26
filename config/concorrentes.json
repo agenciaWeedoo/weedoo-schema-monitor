@@ -18,39 +18,21 @@
     "notas": "ADICIONADO — Marketplace de cannabis medicinal com blog ativo sobre tratamentos; forte autoridade de domínio e presença em buscas de fundo de funil (ex.: 'comprar CBD')"
   },
   {
-    "nome": "Sechat",
-    "home": "https://sechat.com.br/",
-    "blog": "https://sechat.com.br/noticias",
-    "notas": "CANDIDATO (portal) — maior portal de notícias de cannabis medicinal e cânhamo; cobre pacientes, médicos e mercado"
-  },
-  {
     "nome": "Cannabis Monitor",
     "home": "https://cannabismonitor.com.br/",
-    "blog": "https://cannabismonitor.com.br/",
-    "notas": "CANDIDATO (portal) — notícias e análise do setor, voltado também a médicos"
-  },
-  {
-    "nome": "ConectaMed Web",
-    "home": "https://conectamedweb.com.br/",
-    "blog": "https://conectamedweb.com.br/blog/",
-    "notas": "CANDIDATO (agência) — marketing digital exclusivo para médicos prescritores de cannabis"
+    "blog": "https://cannabismonitor.com.br/noticias/",
+    "notas": "Portal de notícias e análise do setor, também voltado a médicos. Substitui Cannabis & Saúde (bloqueia bots via Cloudflare). Incluído em 26/10/2026."
   },
   {
     "nome": "Kaya Doc",
     "home": "https://kayadoc.com.br/",
     "blog": "https://kayadoc.com.br/blog/",
-    "notas": "CANDIDATO (prescritores) — plataforma da Kaya Mind para médicos prescritores; publica conteúdo de SEO e marketing para médicos"
+    "notas": "Plataforma da Kaya Mind para médicos prescritores; publica conteúdo de visibilidade e SEO para médicos — disputa o mesmo público da Weedoo. Substitui Rocket Med. Incluído em 26/10/2026."
   },
   {
     "nome": "Kaya Mind",
     "home": "https://kayamind.com/",
     "blog": "https://kayamind.com/blog/",
-    "notas": "CANDIDATO (inteligência/conteúdo) — inteligência de mercado de cannabis; blog ativo com conteúdo de marketing para o setor"
-  },
-  {
-    "nome": "Click Cannabis",
-    "home": "https://clickcannabis.com/",
-    "blog": "https://clickcannabis.com/blog/",
-    "notas": "CANDIDATO (pacientes) — plataforma que conecta pacientes a prescritores"
+    "notas": "Inteligência de mercado de cannabis; blog ativo com conteúdo de marketing para empresas e associações do setor. Mesmo grupo da Kaya Doc, público diferente. Substitui Anandamidia. Incluído em 26/10/2026."
   }
 ]
