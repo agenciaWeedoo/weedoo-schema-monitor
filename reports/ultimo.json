@@ -1,0 +1,1022 @@
+{
+  "versao_formato": 1,
+  "data": "2026-10-26",
+  "gerado_por": "WeedooSEOMonitorBot",
+  "weedoo": {
+    "paginas": [
+      {
+        "url": "https://www.weedoo.med.br/",
+        "url_final": "https://www.weedoo.med.br/",
+        "tipo_pagina": "home",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "FAQPage",
+          "WebPage",
+          "CreativeWork"
+        ],
+        "erros": [],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/",
+        "url_final": "https://www.weedoo.med.br/blog/",
+        "tipo_pagina": "blog_listagem",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "CollectionPage",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/nossos-servicos/",
+        "url_final": "https://www.weedoo.med.br/nossos-servicos/",
+        "tipo_pagina": "servicos",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "WebPage",
+          "BreadcrumbList",
+          "CreativeWork"
+        ],
+        "erros": [],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/sobre/",
+        "url_final": "https://www.weedoo.med.br/sobre/",
+        "tipo_pagina": "sobre",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "AboutPage",
+          "BreadcrumbList",
+          "WebPage",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[WebPage] Campo obrigatório ausente ou vazio: 'name'",
+          "[WebPage] Campo obrigatório ausente ou vazio: 'url'"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/contato/",
+        "url_final": "https://www.weedoo.med.br/contato/",
+        "tipo_pagina": "pagina_generica",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "ContactPage",
+          "BreadcrumbList",
+          "WebPage",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[WebPage] Campo obrigatório ausente ou vazio: 'name'",
+          "[WebPage] Campo obrigatório ausente ou vazio: 'url'"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/politica-de-privacidade/",
+        "url_final": "https://www.weedoo.med.br/politica-de-privacidade/",
+        "tipo_pagina": "pagina_generica",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "WebPage",
+          "BreadcrumbList",
+          "CreativeWork"
+        ],
+        "erros": [],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/guia-do-paciente/canabidiol-serve-para-quais-doencas/",
+        "url_final": "https://www.weedoo.med.br/blog/guia-do-paciente/canabidiol-serve-para-quais-doencas/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "MedicalWebPage",
+          "FAQPage",
+          "BlogPosting",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[BlogPosting] Campo 'keywords' ausente — importante para relevância temática"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/guia-do-paciente/como-conseguir-cannabis-medicinal-legalmente-no-brasil-passo-a-passo-2026/",
+        "url_final": "https://www.weedoo.med.br/blog/guia-do-paciente/como-conseguir-cannabis-medicinal-legalmente-no-brasil-passo-a-passo-2026/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "Article",
+          "MedicalWebPage",
+          "FAQPage",
+          "HowTo",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/seo/seo-onpage/seo-on-page-historia/",
+        "url_final": "https://www.weedoo.med.br/blog/seo/seo-onpage/seo-on-page-historia/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "WebPage",
+          "BlogPosting",
+          "FAQPage",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[BlogPosting] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/marketing-medico/engenharia-digital-cannabis-medicinal-autoridade-2026/",
+        "url_final": "https://www.weedoo.med.br/blog/marketing-medico/engenharia-digital-cannabis-medicinal-autoridade-2026/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "WebPage",
+          "Article",
+          "FAQPage",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[Article] Campo obrigatório ausente ou vazio: 'image'",
+          "[Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[Article] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[Article] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo",
+          "[Article] Campo 'keywords' ausente — importante para relevância temática"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/guia-do-paciente/dentista-pode-prescrever-cannabis-rdc-1015-2026/",
+        "url_final": "https://www.weedoo.med.br/blog/guia-do-paciente/dentista-pode-prescrever-cannabis-rdc-1015-2026/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "MedicalWebPage",
+          "Article",
+          "BlogPosting",
+          "FAQPage",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
+          "[Article] Campo obrigatório ausente ou vazio: 'author'",
+          "[Article] Campo obrigatório ausente ou vazio: 'datePublished'",
+          "[Article] Campo obrigatório ausente ou vazio: 'dateModified'",
+          "[Article] Campo obrigatório ausente ou vazio: 'publisher'",
+          "[Article] Campo 'author' está ausente no schema Article",
+          "[Article] Campo 'publisher' ausente (obrigatório para Article rich snippets)",
+          "[BlogPosting] Campo obrigatório ausente ou vazio: 'author'",
+          "[BlogPosting] Campo obrigatório ausente ou vazio: 'datePublished'",
+          "[BlogPosting] Campo obrigatório ausente ou vazio: 'publisher'",
+          "[BlogPosting] Campo 'author' está ausente no schema Article",
+          "[BlogPosting] Campo 'publisher' ausente (obrigatório para Article rich snippets)"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[Article] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[Article] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo",
+          "[Article] Campo 'keywords' ausente — importante para relevância temática",
+          "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[BlogPosting] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo",
+          "[BlogPosting] Campo 'keywords' ausente — importante para relevância temática"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/seo/o-guia-definitivo-da-ciencia-endocanabinoide-para-clinicas-de-alta-performance-etica-mercado-e-visibilidade/",
+        "url_final": "https://www.weedoo.med.br/blog/seo/o-guia-definitivo-da-ciencia-endocanabinoide-para-clinicas-de-alta-performance-etica-mercado-e-visibilidade/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "WebPage",
+          "BlogPosting",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[BlogPosting] Campo 'keywords' ausente — importante para relevância temática"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/ciencia-endocanabinoide/efeito-entourage-pratica-clinica-full-spectrum-isolado/",
+        "url_final": "https://www.weedoo.med.br/blog/ciencia-endocanabinoide/efeito-entourage-pratica-clinica-full-spectrum-isolado/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "MedicalWebPage",
+          "Article",
+          "FAQPage",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'name'",
+          "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
+          "[Article] Campo obrigatório ausente ou vazio: 'mainEntityOfPage'",
+          "[Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[Article] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[Article] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo",
+          "[Article] Campo 'keywords' ausente — importante para relevância temática"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/guia-do-paciente/canabidiol-o-que-e-para-que-serve/",
+        "url_final": "https://www.weedoo.med.br/blog/guia-do-paciente/canabidiol-o-que-e-para-que-serve/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "MedicalWebPage",
+          "FAQPage",
+          "BlogPosting",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[BlogPosting] Campo 'keywords' ausente — importante para relevância temática"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/guia-do-paciente/oleo-de-canabidiol-para-que-serve-beneficios/",
+        "url_final": "https://www.weedoo.med.br/blog/guia-do-paciente/oleo-de-canabidiol-para-que-serve-beneficios/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "MedicalWebPage",
+          "FAQPage",
+          "BlogPosting",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[BlogPosting] Campo 'keywords' ausente — importante para relevância temática"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/guia-do-paciente/maconha-medicinal-vicia/",
+        "url_final": "https://www.weedoo.med.br/blog/guia-do-paciente/maconha-medicinal-vicia/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "WebPage",
+          "BlogPosting",
+          "FAQPage",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[BlogPosting] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo",
+          "[BlogPosting] Campo 'keywords' ausente — importante para relevância temática"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/guia-do-paciente/onde-conseguir-cannabis-medicinal/",
+        "url_final": "https://www.weedoo.med.br/blog/guia-do-paciente/onde-conseguir-cannabis-medicinal/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "WebPage",
+          "BlogPosting",
+          "FAQPage",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[BlogPosting] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo",
+          "[BlogPosting] Campo 'keywords' ausente — importante para relevância temática"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/guia-do-paciente/cannabis-medicinal-quanto-custa-o-tratamento-em-2026/",
+        "url_final": "https://www.weedoo.med.br/blog/guia-do-paciente/cannabis-medicinal-quanto-custa-o-tratamento-em-2026/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "MedicalWebPage",
+          "FAQPage",
+          "BlogPosting",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[BlogPosting] Campo 'keywords' ausente — importante para relevância temática"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/marketing-medico/ciencia-endocanabinoide-como-a-nova-producao-nacional-e-o-aval-do-stj-blindam-seu-consultorio/",
+        "url_final": "https://www.weedoo.med.br/blog/marketing-medico/ciencia-endocanabinoide-como-a-nova-producao-nacional-e-o-aval-do-stj-blindam-seu-consultorio/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "WebPage",
+          "BlogPosting",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[WebPage] Campo obrigatório ausente ou vazio: 'name'",
+          "[WebPage] Campo obrigatório ausente ou vazio: 'url'",
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[BlogPosting] Campo 'keywords' ausente — importante para relevância temática"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/seo/geo-e-aeo-como-fazer-o-chatgpt-e-o-gemini-recomendarem-o-seu-consultorio/",
+        "url_final": "https://www.weedoo.med.br/blog/seo/geo-e-aeo-como-fazer-o-chatgpt-e-o-gemini-recomendarem-o-seu-consultorio/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "WebPage",
+          "FAQPage",
+          "BlogPosting",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[BlogPosting] Campo 'keywords' ausente — importante para relevância temática"
+        ]
+      },
+      {
+        "url": "https://www.weedoo.med.br/blog/seo/ciencia-da-visibilidade-seo-de-alta-performance-inteligencia-de-dados-para-mercado-de-cannabis/",
+        "url_final": "https://www.weedoo.med.br/blog/seo/ciencia-da-visibilidade-seo-de-alta-performance-inteligencia-de-dados-para-mercado-de-cannabis/",
+        "tipo_pagina": "artigo",
+        "acessivel": true,
+        "bloqueio": null,
+        "tipos": [
+          "Organization",
+          "ProfessionalService",
+          "WebSite",
+          "Person",
+          "WebPage",
+          "BlogPosting",
+          "FAQPage",
+          "BreadcrumbList",
+          "Blog",
+          "CreativeWork"
+        ],
+        "erros": [
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+        ],
+        "avisos": [
+          "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
+          "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
+          "[BlogPosting] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo"
+        ]
+      }
+    ],
+    "tipos": [
+      "AboutPage",
+      "Article",
+      "Blog",
+      "BlogPosting",
+      "BreadcrumbList",
+      "CollectionPage",
+      "ContactPage",
+      "CreativeWork",
+      "FAQPage",
+      "HowTo",
+      "MedicalWebPage",
+      "Organization",
+      "Person",
+      "ProfessionalService",
+      "WebPage",
+      "WebSite"
+    ],
+    "total_erros": 40
+  },
+  "concorrentes": [
+    {
+      "nome": "Rocket Med",
+      "home": "https://www.medrocket.com.br/",
+      "blog": "https://www.medrocket.com.br/index.html#cases",
+      "paginas_lidas": 2,
+      "paginas_tentadas": 2,
+      "tipos": [
+        "BreadcrumbList",
+        "FAQPage",
+        "ProfessionalService"
+      ],
+      "tem_eeat": false,
+      "tem_medical_schema": false,
+      "tem_rich_snippets": true,
+      "paginas": [
+        {
+          "url": "https://www.medrocket.com.br/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "BreadcrumbList",
+            "FAQPage",
+            "ProfessionalService"
+          ],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://www.medrocket.com.br/index.html#cases",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "BreadcrumbList",
+            "FAQPage",
+            "ProfessionalService"
+          ],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        }
+      ]
+    },
+    {
+      "nome": "Anandamidia",
+      "home": "https://www.anandamidia.com.br",
+      "blog": "https://www.anandamidia.com.br/blog/",
+      "paginas_lidas": 2,
+      "paginas_tentadas": 2,
+      "tipos": [
+        "BreadcrumbList",
+        "ImageObject",
+        "WebPage",
+        "WebSite"
+      ],
+      "tem_eeat": false,
+      "tem_medical_schema": false,
+      "tem_rich_snippets": true,
+      "paginas": [
+        {
+          "url": "https://www.anandamidia.com.br",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "BreadcrumbList",
+            "ImageObject",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://www.anandamidia.com.br/blog/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "BreadcrumbList",
+            "ImageObject",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        }
+      ]
+    },
+    {
+      "nome": "WeCann Academy",
+      "home": "https://wecann.academy/",
+      "blog": "https://wecann.academy/blog/",
+      "paginas_lidas": 5,
+      "paginas_tentadas": 5,
+      "tipos": [
+        "Article",
+        "BreadcrumbList",
+        "ImageObject",
+        "MedicalOrganization",
+        "Organization",
+        "Person",
+        "Place",
+        "WebPage",
+        "WebSite"
+      ],
+      "tem_eeat": true,
+      "tem_medical_schema": false,
+      "tem_rich_snippets": true,
+      "paginas": [
+        {
+          "url": "https://wecann.academy/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "ImageObject",
+            "MedicalOrganization",
+            "Organization",
+            "Place",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://wecann.academy/blog/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "BreadcrumbList"
+          ],
+          "tem_author": true,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://wecann.academy/efeito-entourage-pratica-clinica/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "BreadcrumbList",
+            "ImageObject",
+            "MedicalOrganization",
+            "Organization",
+            "Person",
+            "Place",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://wecann.academy/estigma-comunicacao-medico-paciente-cannabis/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "BreadcrumbList",
+            "ImageObject",
+            "MedicalOrganization",
+            "Organization",
+            "Person",
+            "Place",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://wecann.academy/sistema-endocanabinoide-homeostase-ceds/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "BreadcrumbList",
+            "ImageObject",
+            "MedicalOrganization",
+            "Organization",
+            "Person",
+            "Place",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        }
+      ]
+    },
+    {
+      "nome": "Cannabis & Saúde",
+      "home": "https://www.cannabisesaude.com.br/",
+      "blog": "https://www.cannabisesaude.com.br/ultimas-noticias/",
+      "paginas_lidas": 0,
+      "paginas_tentadas": 2,
+      "tipos": [],
+      "tem_eeat": false,
+      "tem_medical_schema": false,
+      "tem_rich_snippets": false,
+      "paginas": [
+        {
+          "url": "https://www.cannabisesaude.com.br/",
+          "acessivel": false,
+          "bloqueio": "cloudflare",
+          "tipos": [],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://www.cannabisesaude.com.br/ultimas-noticias/",
+          "acessivel": false,
+          "bloqueio": "cloudflare",
+          "tipos": [],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        }
+      ]
+    },
+    {
+      "nome": "Dr. Cannabis",
+      "home": "https://www.drcannabis.com.br/",
+      "blog": "https://blog.drcannabis.com.br/",
+      "paginas_lidas": 5,
+      "paginas_tentadas": 5,
+      "tipos": [
+        "BreadcrumbList",
+        "ImageObject",
+        "Person",
+        "WebPage",
+        "WebSite"
+      ],
+      "tem_eeat": false,
+      "tem_medical_schema": false,
+      "tem_rich_snippets": true,
+      "paginas": [
+        {
+          "url": "https://www.drcannabis.com.br/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://blog.drcannabis.com.br/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "BreadcrumbList",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://blog.drcannabis.com.br/como-escolher-um-produto-de-cannabis-para-cada-paciente/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "BreadcrumbList",
+            "ImageObject",
+            "Person",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://blog.drcannabis.com.br/cbd-promissor-depressao-tratamento/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "BreadcrumbList",
+            "ImageObject",
+            "Person",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://blog.drcannabis.com.br/anticoncepcional-cannabis-interacao-cbd/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "BreadcrumbList",
+            "ImageObject",
+            "Person",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        }
+      ]
+    },
+    {
+      "nome": "Cannect",
+      "home": "https://www.cannect.life/",
+      "blog": "https://blog.cannect.life/",
+      "paginas_lidas": 5,
+      "paginas_tentadas": 5,
+      "tipos": [
+        "Article",
+        "BreadcrumbList",
+        "CollectionPage",
+        "ImageObject",
+        "MedicalScholarlyArticle",
+        "Person",
+        "WebPage",
+        "WebSite"
+      ],
+      "tem_eeat": true,
+      "tem_medical_schema": false,
+      "tem_rich_snippets": true,
+      "paginas": [
+        {
+          "url": "https://www.cannect.life/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://blog.cannect.life/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "BreadcrumbList",
+            "CollectionPage",
+            "WebSite"
+          ],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://blog.cannect.life/emagrecimento-e-metabolismo/canetas-para-emagrecer-perda-de-massa-muscular/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "BreadcrumbList",
+            "ImageObject",
+            "MedicalScholarlyArticle",
+            "Person",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://blog.cannect.life/emagrecimento-e-metabolismo/caneta-para-emagrecer/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "BreadcrumbList",
+            "ImageObject",
+            "MedicalScholarlyArticle",
+            "Person",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://blog.cannect.life/colunistas/cannabinoides-endometriose/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "BreadcrumbList",
+            "ImageObject",
+            "MedicalScholarlyArticle",
+            "Person",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        }
+      ]
+    }
+  ]
+}
