@@ -30,14 +30,18 @@ from utils import (
     ORG_NOME,
     ORG_URL,
     SITEMAP_URL,
+    TIPOS_ESTRUTURAIS,
     agrupar_schemas_por_tipo,
-    buscar_pagina,
+    buscar_pagina_info,
     checar_robots,
+    expandir_itens,
     extrair_schemas,
-    obter_tipo_schema,
+    mesclar_por_id,
+    obter_tipos_schema,
+    resolver_referencia,
 )
 from comparador import comparar_concorrentes
-from relatorio import gerar_relatorio, publicar_issue_github, salvar_relatorio
+from relatorio import gerar_relatorio, publicar_issue_github, salvar_dados_json, salvar_relatorio
 
 # ─── Configuração de logging ───────────────────────────────────────────────────
 logging.basicConfig(
@@ -568,7 +572,10 @@ def analisar_pagina_weedoo(url: str, tipo_forcado: str | None = None) -> dict:
         Dicionário com schemas encontrados, erros, avisos e metadados.
     """
     logger.info("🔍 Analisando: %s", url)
-    tipo_pagina = tipo_forcado or _classificar_tipo_pagina(url)
+    tipo_por_url = _classificar_tipo_pagina(url)
+    # A home e a listagem do blog aparecem no sitemap de posts deste site;
+    # a classificação pela URL vale mais que a origem no sitemap.
+    tipo_pagina = tipo_por_url if tipo_por_url in ("home", "blog_listagem") else (tipo_forcado or tipo_por_url)
 
     resultado: dict = {
         "url": url,
@@ -579,19 +586,45 @@ def analisar_pagina_weedoo(url: str, tipo_forcado: str | None = None) -> dict:
         "todos_avisos": [],
         "tipos_presentes": [],
         "metadados": {},
+        "url_final": url,
+        "status_http": None,
+        "bloqueio": None,
     }
 
     # Buscar HTML
-    html = buscar_pagina(url)
+    info = buscar_pagina_info(url)
+    resultado["url_final"] = info["url_final"]
+    resultado["status_http"] = info["status"]
+    resultado["bloqueio"] = info["bloqueio"]
+    html = info["html"]
     if not html:
-        resultado["todos_erros"].append(f"Página inacessível (falha na requisição HTTP): {url}")
+        motivo = {
+            "cloudflare": "desafio do Cloudflare — o bot não leu a página real (libere o User-Agent no WAF)",
+            "robots_txt": "bloqueada pelo robots.txt",
+            "timeout": "tempo de resposta esgotado",
+        }.get(info["bloqueio"], "falha na requisição HTTP")
+        resultado["todos_erros"].append(f"Página inacessível ({motivo}): {url}")
         return resultado
 
     resultado["acessivel"] = True
 
-    # Extrair schemas
-    dados = extrair_schemas(html, url)
-    todos_items = dados.get("json-ld", []) + dados.get("microdata", [])
+    # URL configurada que redireciona: o que foi analisado é o destino.
+    if info["url_final"].rstrip("/") != url.rstrip("/"):
+        resultado["todos_avisos"].append(
+            f"A URL redireciona para {info['url_final']} — o destino foi analisado. "
+            "Atualize config/urls_weedoo.txt e confira se o redirecionamento leva ao conteúdo equivalente."
+        )
+
+    # Extrair schemas (abrindo os blocos @graph)
+    dados = extrair_schemas(html, info["url_final"])
+    todos_items = expandir_itens(dados.get("json-ld", []) + dados.get("microdata", []))
+    # Nós com o mesmo @id são o mesmo objeto; author/publisher costumam vir
+    # só como referência ({"@id": ...}) e precisam ser resolvidos para validar.
+    todos_items, indice_ids = mesclar_por_id(todos_items)
+    for item in todos_items:
+        for campo in ("author", "publisher", "reviewedBy"):
+            if campo in item:
+                item[campo] = resolver_referencia(item[campo], indice_ids)
 
     if not todos_items:
         resultado["todos_erros"].append(
@@ -600,20 +633,35 @@ def analisar_pagina_weedoo(url: str, tipo_forcado: str | None = None) -> dict:
         )
         return resultado
 
-    # Validar cada schema encontrado
+    # Validar cada schema encontrado. Um item com vários @type
+    # (ex.: Organization + ProfessionalService) conta para cada um deles;
+    # as mensagens são registradas uma vez só.
     for item in todos_items:
-        tipo = obter_tipo_schema(item)
-        validacao = validar_schema_item(item, tipo, url)
-        resultado["schemas_encontrados"][tipo] = validacao
-        resultado["todos_erros"].extend(validacao["erros"])
-        resultado["todos_avisos"].extend(validacao["avisos"])
+        for tipo in obter_tipos_schema(item):
+            if tipo in TIPOS_ESTRUTURAIS or tipo in resultado["schemas_encontrados"]:
+                continue
+            validacao = validar_schema_item(item, tipo, url)
+            resultado["schemas_encontrados"][tipo] = validacao
+            for e in validacao["erros"]:
+                msg = f"[{tipo}] {e}"
+                if msg not in resultado["todos_erros"]:
+                    resultado["todos_erros"].append(msg)
+            for a in validacao["avisos"]:
+                msg = f"[{tipo}] {a}"
+                if msg not in resultado["todos_avisos"]:
+                    resultado["todos_avisos"].append(msg)
 
     resultado["tipos_presentes"] = list(resultado["schemas_encontrados"].keys())
 
     # Verificar schemas esperados mas ausentes para este tipo de página
     esperados = SCHEMAS_ESPERADOS.get(tipo_pagina, ["BreadcrumbList"])
+    equivalentes = {
+        "Article": ("Article", "BlogPosting", "NewsArticle", "MedicalScholarlyArticle"),
+        "WebPage": ("WebPage", "AboutPage", "ContactPage", "CollectionPage", "MedicalWebPage", "FAQPage", "ItemPage"),
+    }
     for tipo_esperado in esperados:
-        if tipo_esperado not in resultado["tipos_presentes"]:
+        aceitos = equivalentes.get(tipo_esperado, (tipo_esperado,))
+        if not any(t in resultado["tipos_presentes"] for t in aceitos):
             resultado["todos_erros"].append(
                 f"Schema '{tipo_esperado}' ausente — "
                 f"esperado para páginas do tipo '{tipo_pagina}'"
@@ -649,7 +697,7 @@ def main() -> None:
 
     # ── ETAPA 2: Extrair posts do sitemap ─────────────────────────────────────
     logger.info("\n🗺️  ETAPA 2/6 — Extraindo posts do sitemap.xml...")
-    urls_sitemap = obter_urls_sitemap(SITEMAP_URL, max_artigos=8)
+    urls_sitemap = obter_urls_sitemap(SITEMAP_URL, max_artigos=30)
     # Consolidar URLs únicas, preservando a ordem (base primeiro, depois sitemap)
     todas_urls = list(dict.fromkeys(urls_base + urls_sitemap))
     logger.info("📊 Total de URLs a analisar: %d", len(todas_urls))
@@ -659,9 +707,16 @@ def main() -> None:
     resultados_weedoo: list[dict] = []
     # URLs do sitemap são sempre posts — forçar classificação como "artigo"
     urls_sitemap_set = set(urls_sitemap)
+    destinos_vistos: set[str] = set()
     for url in todas_urls:
         tipo_f = "artigo" if url in urls_sitemap_set else None
         resultado = analisar_pagina_weedoo(url, tipo_forcado=tipo_f)
+        # Duas URLs que caem no mesmo destino (redirect) contam uma vez só
+        destino = resultado.get("url_final", url).rstrip("/")
+        if resultado.get("acessivel") and destino in destinos_vistos:
+            logger.info("  ↪ %s cai em página já analisada (%s) — ignorada", url, destino)
+            continue
+        destinos_vistos.add(destino)
         resultados_weedoo.append(resultado)
 
     erros_total = sum(len(r["todos_erros"]) for r in resultados_weedoo)
@@ -679,6 +734,8 @@ def main() -> None:
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
     caminho_salvo = salvar_relatorio(relatorio_md, REPORTS_DIR)
     logger.info("💾 Relatório salvo em: %s", caminho_salvo)
+    caminho_json = salvar_dados_json(resultados_weedoo, resultados_concorrentes, REPORTS_DIR)
+    logger.info("💾 Dados estruturados salvos em: %s (lidos pelo agente do Índice)", caminho_json)
 
     # ── ETAPA 6b: Publicar Issue no GitHub ────────────────────────────────────
     logger.info("\n🐙 ETAPA 6/6 — Publicando Issue no GitHub...")

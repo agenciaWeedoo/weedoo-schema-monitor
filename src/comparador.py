@@ -20,11 +20,11 @@ from bs4 import BeautifulSoup
 from utils import (
     DELAY_SEGUNDOS,
     HEADERS_PADRAO,
-    agrupar_schemas_por_tipo,
-    buscar_pagina,
-    buscar_via_wayback,
+    TIPOS_ESTRUTURAIS,
+    buscar_pagina_info,
+    expandir_itens,
     extrair_schemas,
-    obter_tipo_schema,
+    obter_tipos_schema,
 )
 
 logger = logging.getLogger("comparador")
@@ -171,6 +171,9 @@ def _tentar_url_blog(home_url: str, blog_url: str, nome: str) -> str | None:
         tentativa = f"{base}{caminho}/"
         if tentativa == blog_url.rstrip("/") + "/":
             continue  # já tentamos essa
+        from utils import checar_robots
+        if not checar_robots(tentativa):
+            continue  # caminho vetado pelo robots.txt do concorrente
         try:
             import time
             time.sleep(DELAY_SEGUNDOS)
@@ -213,52 +216,42 @@ def analisar_pagina_concorrente(url: str, nome_concorrente: str) -> dict:
         "tem_rich_snippets": False,    # FAQPage, HowTo, VideoObject, etc.
     }
 
-    # Verificar robots.txt — se bloqueado, tentar Wayback Machine como fallback
-    from utils import checar_robots
-    html = None
-    if not checar_robots(url):
-        resultado["motivo_inacessivel"] = "robots_txt"
+    # robots.txt é respeitado sem atalhos: página bloqueada fica registrada
+    # como bloqueada no relatório (nada de buscar cópia arquivada).
+    info = buscar_pagina_info(url)
+    resultado["url_final"] = info["url_final"]
+    html = info["html"]
+    if not html:
+        resultado["motivo_inacessivel"] = info["bloqueio"] or "http_erro"
         logger.warning(
-            "  ⚠️  [%s] Bloqueado por robots.txt: %s — tentando Wayback Machine...",
-            nome_concorrente, url,
+            "  ⚠️  [%s] Página não lida (%s): %s",
+            nome_concorrente, resultado["motivo_inacessivel"], url,
         )
-        html = buscar_via_wayback(url)
-        if html:
-            resultado["motivo_inacessivel"] = None
-            resultado["fonte"] = "wayback_machine"
-            logger.info("  📦 [%s] Dados obtidos via Wayback Machine (snapshot arquivado)", nome_concorrente)
-        else:
-            logger.warning("  ❌ [%s] Wayback Machine também indisponível: %s", nome_concorrente, url)
-            return resultado
-    else:
-        html = buscar_pagina(url)
-        if not html:
-            resultado["motivo_inacessivel"] = "http_erro"
-            logger.warning("  ⚠️  [%s] Página inacessível (HTTP): %s", nome_concorrente, url)
-            return resultado
+        return resultado
 
     resultado["acessivel"] = True
-    dados = extrair_schemas(html, url)
-    todos_items = dados.get("json-ld", []) + dados.get("microdata", [])
+    resultado["_html"] = html  # usado para achar artigos recentes; removido depois
+    dados = extrair_schemas(html, info["url_final"])
+    todos_items = expandir_itens(dados.get("json-ld", []) + dados.get("microdata", []))
 
     tipos_vistos: set[str] = set()
     for item in todos_items:
-        tipo = obter_tipo_schema(item)
-        tipos_vistos.add(tipo)
-
-        # Registrar campos presentes por tipo (para análise comparativa)
-        resultado["schemas_detalhados"][tipo] = {
-            "campos": [k for k in item.keys() if not k.startswith("@")],
-            "tem_author": "author" in item,
-            "tem_publisher": "publisher" in item,
-            "tem_datePublished": "datePublished" in item,
-            "tem_dateModified": "dateModified" in item,
-        }
+        tipos_item = [t for t in obter_tipos_schema(item) if t not in TIPOS_ESTRUTURAIS]
+        for tipo in tipos_item:
+            tipos_vistos.add(tipo)
+            # Registrar campos presentes por tipo (para análise comparativa)
+            resultado["schemas_detalhados"].setdefault(tipo, {
+                "campos": [k for k in item.keys() if not k.startswith("@")],
+                "tem_author": "author" in item,
+                "tem_publisher": "publisher" in item,
+                "tem_datePublished": "datePublished" in item,
+                "tem_dateModified": "dateModified" in item,
+            })
 
         # Flags de alto nível
-        if "author" in item:
+        if tipos_item and "author" in item:
             resultado["tem_author"] = True
-        if "publisher" in item:
+        if tipos_item and "publisher" in item:
             resultado["tem_publisher"] = True
 
     resultado["tipos_encontrados"] = sorted(tipos_vistos)
@@ -339,8 +332,8 @@ def comparar_concorrentes() -> list[dict]:
             resultado_concorrente["tipos_unicos"].update(pagina_blog["tipos_encontrados"])
             resultado_concorrente["paginas_analisadas"] += 1
 
-            # Tentar extrair artigos recentes da listagem do blog
-            html_blog = buscar_pagina(blog_url)
+            # Extrair artigos recentes da listagem do blog (HTML já baixado acima)
+            html_blog = pagina_blog.get("_html")
             if html_blog:
                 urls_artigos = extrair_links_artigos_recentes(html_blog, blog_url, limite=3)
                 logger.info(
@@ -355,6 +348,7 @@ def comparar_concorrentes() -> list[dict]:
 
         # ── Consolidar flags ───────────────────────────────────────────────────
         for pagina in resultado_concorrente["paginas"]:
+            pagina.pop("_html", None)
             if pagina.get("tem_eeeat_completo"):
                 resultado_concorrente["tem_eeeat"] = True
             if pagina.get("tem_medical_schema"):
