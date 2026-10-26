@@ -8,7 +8,7 @@
 
 ## 📊 Sumário Executivo
 
-Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorrentes** configurados. Encontrados **40 erros** e **78 avisos**. Dos **15 artigos** do blog, **15 possuem** schema de artigo implementado. Em relação à concorrência, **2 de 5 concorrentes lidos** implementam E-E-A-T básico (autor + publisher). Não lidos nesta rodada: Cannabis & Saúde. A Weedoo **não utiliza** 4 tipo(s) de schema já adotados por concorrentes: `ImageObject`, `MedicalOrganization`, `MedicalScholarlyArticle`, `Place`. Os schemas abaixo já estão **preenchidos com os dados reais de cada página** — basta copiar, colar e publicar.
+Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **9 concorrentes** configurados. Encontrados **38 erros** e **82 avisos**. Dos **15 artigos** do blog, **15 possuem** schema de artigo implementado. Em relação à concorrência, **5 de 8 concorrentes lidos** implementam E-E-A-T básico (autor + publisher). Não lidos nesta rodada: ConectaMed Web. A Weedoo **não utiliza** 8 tipo(s) de schema já adotados por concorrentes: `ImageObject`, `ItemList`, `MedicalOrganization`, `MedicalScholarlyArticle`, `NewsMediaOrganization`, `Place`, `SoftwareApplication`, `VideoObject`. Os schemas abaixo já estão **preenchidos com os dados reais de cada página** — basta copiar, colar e publicar.
 
 
 ## 🔍 Cobertura de Schemas — Weedoo
@@ -30,8 +30,8 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 | `/blog/ciencia-endocanabinoide/efeito-entourage-pratica-clinica-full-spectrum-isolado` | artigo | Organization, ProfessionalService, WebSite, Person, MedicalWebPage, Article, FAQPage, BreadcrumbList, Blog, CreativeWork | 4 | 5 | 🔴 Crítico |
 | `/blog/guia-do-paciente/canabidiol-o-que-e-para-que-serve` | artigo | Organization, ProfessionalService, WebSite, Person, MedicalWebPage, FAQPage, BlogPosting, BreadcrumbList, Blog, CreativeWork | 2 | 4 | 🟡 Atenção |
 | `/blog/guia-do-paciente/oleo-de-canabidiol-para-que-serve-beneficios` | artigo | Organization, ProfessionalService, WebSite, Person, MedicalWebPage, FAQPage, BlogPosting, BreadcrumbList, Blog, CreativeWork | 2 | 4 | 🟡 Atenção |
-| `/blog/guia-do-paciente/maconha-medicinal-vicia` | artigo | Organization, ProfessionalService, WebSite, Person, WebPage, BlogPosting, FAQPage, BreadcrumbList, Blog, CreativeWork | 1 | 5 | 🟡 Atenção |
-| `/blog/guia-do-paciente/onde-conseguir-cannabis-medicinal` | artigo | Organization, ProfessionalService, WebSite, Person, WebPage, BlogPosting, FAQPage, BreadcrumbList, Blog, CreativeWork | 1 | 5 | 🟡 Atenção |
+| `/blog/guia-do-paciente/maconha-medicinal-vicia` | artigo | Organization, ProfessionalService, WebSite, Person, WebPage, BlogPosting, FAQPage, BreadcrumbList, Blog, CreativeWork | 0 | 7 | 🟢 OK |
+| `/blog/guia-do-paciente/onde-conseguir-cannabis-medicinal` | artigo | Organization, ProfessionalService, WebSite, Person, WebPage, BlogPosting, FAQPage, BreadcrumbList, Blog, CreativeWork | 0 | 7 | 🟢 OK |
 | `/blog/guia-do-paciente/cannabis-medicinal-quanto-custa-o-tratamento-em-2026` | artigo | Organization, ProfessionalService, WebSite, Person, MedicalWebPage, FAQPage, BlogPosting, BreadcrumbList, Blog, CreativeWork | 2 | 4 | 🟡 Atenção |
 | `/blog/marketing-medico/ciencia-endocanabinoide-como-a-nova-producao-nacional-e-o-aval-do-stj-blindam-seu-consultorio` | artigo | Organization, ProfessionalService, WebSite, Person, WebPage, BlogPosting, BreadcrumbList, Blog, CreativeWork | 3 | 4 | 🔴 Crítico |
 | `/blog/seo/geo-e-aeo-como-fazer-o-chatgpt-e-o-gemini-recomendarem-o-seu-consultorio` | artigo | Organization, ProfessionalService, WebSite, Person, WebPage, FAQPage, BlogPosting, BreadcrumbList, Blog, CreativeWork | 1 | 4 | 🟡 Atenção |
@@ -76,7 +76,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 #### `/blog/guia-do-paciente/canabidiol-serve-para-quais-doencas`
 
 - 🔴 **ERRO:** [MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'
-- 🔴 **ERRO:** [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+- 🔴 **ERRO:** [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
 - 🟡 **AVISO:** [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
@@ -84,13 +84,13 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 
 #### `/blog/guia-do-paciente/como-conseguir-cannabis-medicinal-legalmente-no-brasil-passo-a-passo-2026`
 
-- 🔴 **ERRO:** [Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+- 🔴 **ERRO:** [Article] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
 
 #### `/blog/seo/seo-onpage/seo-on-page-historia`
 
-- 🔴 **ERRO:** [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+- 🔴 **ERRO:** [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
 - 🟡 **AVISO:** [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
@@ -99,7 +99,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 #### `/blog/marketing-medico/engenharia-digital-cannabis-medicinal-autoridade-2026`
 
 - 🔴 **ERRO:** [Article] Campo obrigatório ausente ou vazio: 'image'
-- 🔴 **ERRO:** [Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+- 🔴 **ERRO:** [Article] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
 - 🟡 **AVISO:** [Article] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
@@ -131,7 +131,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 
 #### `/blog/seo/o-guia-definitivo-da-ciencia-endocanabinoide-para-clinicas-de-alta-performance-etica-mercado-e-visibilidade`
 
-- 🔴 **ERRO:** [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+- 🔴 **ERRO:** [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
 - 🟡 **AVISO:** [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
@@ -142,7 +142,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 - 🔴 **ERRO:** [MedicalWebPage] Campo obrigatório ausente ou vazio: 'name'
 - 🔴 **ERRO:** [MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'
 - 🔴 **ERRO:** [Article] Campo obrigatório ausente ou vazio: 'mainEntityOfPage'
-- 🔴 **ERRO:** [Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+- 🔴 **ERRO:** [Article] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
 - 🟡 **AVISO:** [Article] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
@@ -152,7 +152,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 #### `/blog/guia-do-paciente/canabidiol-o-que-e-para-que-serve`
 
 - 🔴 **ERRO:** [MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'
-- 🔴 **ERRO:** [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+- 🔴 **ERRO:** [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
 - 🟡 **AVISO:** [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
@@ -161,7 +161,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 #### `/blog/guia-do-paciente/oleo-de-canabidiol-para-que-serve-beneficios`
 
 - 🔴 **ERRO:** [MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'
-- 🔴 **ERRO:** [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+- 🔴 **ERRO:** [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
 - 🟡 **AVISO:** [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
@@ -169,18 +169,20 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 
 #### `/blog/guia-do-paciente/maconha-medicinal-vicia`
 
-- 🔴 **ERRO:** [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
+- 🟡 **AVISO:** [BlogPosting] author não referencia o nó da organização ('https://www.weedoo.med.br/#Organization'). Use {"@id": "https://www.weedoo.med.br/#Organization"} para autor e publisher serem o mesmo objeto.
+- 🟡 **AVISO:** [BlogPosting] author.sameAs vazio — inclua os perfis oficiais da agência (Instagram, LinkedIn da empresa) para reforçar a entidade.
 - 🟡 **AVISO:** [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
 - 🟡 **AVISO:** [BlogPosting] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo
 - 🟡 **AVISO:** [BlogPosting] Campo 'keywords' ausente — importante para relevância temática
 
 #### `/blog/guia-do-paciente/onde-conseguir-cannabis-medicinal`
 
-- 🔴 **ERRO:** [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
+- 🟡 **AVISO:** [BlogPosting] author não referencia o nó da organização ('https://www.weedoo.med.br/#Organization'). Use {"@id": "https://www.weedoo.med.br/#Organization"} para autor e publisher serem o mesmo objeto.
+- 🟡 **AVISO:** [BlogPosting] author.sameAs vazio — inclua os perfis oficiais da agência (Instagram, LinkedIn da empresa) para reforçar a entidade.
 - 🟡 **AVISO:** [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
 - 🟡 **AVISO:** [BlogPosting] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo
 - 🟡 **AVISO:** [BlogPosting] Campo 'keywords' ausente — importante para relevância temática
@@ -188,7 +190,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 #### `/blog/guia-do-paciente/cannabis-medicinal-quanto-custa-o-tratamento-em-2026`
 
 - 🔴 **ERRO:** [MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'
-- 🔴 **ERRO:** [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+- 🔴 **ERRO:** [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
 - 🟡 **AVISO:** [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
@@ -198,7 +200,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 
 - 🔴 **ERRO:** [WebPage] Campo obrigatório ausente ou vazio: 'name'
 - 🔴 **ERRO:** [WebPage] Campo obrigatório ausente ou vazio: 'url'
-- 🔴 **ERRO:** [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+- 🔴 **ERRO:** [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
 - 🟡 **AVISO:** [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
@@ -206,7 +208,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 
 #### `/blog/seo/geo-e-aeo-como-fazer-o-chatgpt-e-o-gemini-recomendarem-o-seu-consultorio`
 
-- 🔴 **ERRO:** [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+- 🔴 **ERRO:** [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
 - 🟡 **AVISO:** [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
@@ -214,7 +216,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 
 #### `/blog/seo/ciencia-da-visibilidade-seo-de-alta-performance-inteligencia-de-dados-para-mercado-de-cannabis`
 
-- 🔴 **ERRO:** [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+- 🔴 **ERRO:** [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 - 🟡 **AVISO:** [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 - 🟡 **AVISO:** [Organization] Organization.telephone ausente — recomendado para SEO local e contato
 - 🟡 **AVISO:** [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
@@ -222,40 +224,44 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 
 ## 🥊 Comparativo com Concorrentes
 
-| Schema | Weedoo | Rocket Med | Anandamidia | WeCann Academy | Cannabis & Saúde | Dr. Cannabis | Cannect |
-|--------|--------|-------- | -------- | -------- | -------- | -------- | --------|
-| `AboutPage` | ✅ | ❌ | ❌ | ❌ | — | ❌ | ❌ |
-| `Article` | ✅ | ❌ | ❌ | ✅ | — | ❌ | ✅ |
-| `Blog` | ✅ | ❌ | ❌ | ❌ | — | ❌ | ❌ |
-| `BlogPosting` | ✅ | ❌ | ❌ | ❌ | — | ❌ | ❌ |
-| `BreadcrumbList` | ✅ | ✅ | ✅ | ✅ | — | ✅ | ✅ |
-| `CollectionPage` | ✅ | ❌ | ❌ | ❌ | — | ❌ | ✅ |
-| `ContactPage` | ✅ | ❌ | ❌ | ❌ | — | ❌ | ❌ |
-| `CreativeWork` | ✅ | ❌ | ❌ | ❌ | — | ❌ | ❌ |
-| `FAQPage` | ✅ | ✅ | ❌ | ❌ | — | ❌ | ❌ |
-| `HowTo` | ✅ | ❌ | ❌ | ❌ | — | ❌ | ❌ |
-| `ImageObject` | ❌ | ❌ | ✅ | ✅ | — | ✅ | ✅ |
-| `MedicalOrganization` | ❌ | ❌ | ❌ | ✅ | — | ❌ | ❌ |
-| `MedicalScholarlyArticle` | ❌ | ❌ | ❌ | ❌ | — | ❌ | ✅ |
-| `MedicalWebPage` | ✅ | ❌ | ❌ | ❌ | — | ❌ | ❌ |
-| `Organization` | ✅ | ❌ | ❌ | ✅ | — | ❌ | ❌ |
-| `Person` | ✅ | ❌ | ❌ | ✅ | — | ✅ | ✅ |
-| `Place` | ❌ | ❌ | ❌ | ✅ | — | ❌ | ❌ |
-| `ProfessionalService` | ✅ | ✅ | ❌ | ❌ | — | ❌ | ❌ |
-| `WebPage` | ✅ | ❌ | ✅ | ✅ | — | ✅ | ✅ |
-| `WebSite` | ✅ | ❌ | ✅ | ✅ | — | ✅ | ✅ |
+| Schema | Weedoo | WeCann Academy | Dr. Cannabis | Cannect | Sechat | Cannabis Monitor | ConectaMed Web | Kaya Doc | Kaya Mind | Click Cannabis |
+|--------|--------|-------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | --------|
+| `AboutPage` | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | — | ❌ | ❌ | ❌ |
+| `Article` | ✅ | ✅ | ❌ | ✅ | ❌ | ✅ | — | ✅ | ✅ | ❌ |
+| `Blog` | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | — | ❌ | ❌ | ❌ |
+| `BlogPosting` | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | — | ❌ | ❌ | ❌ |
+| `BreadcrumbList` | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | — | ✅ | ✅ | ❌ |
+| `CollectionPage` | ✅ | ❌ | ❌ | ✅ | ✅ | ❌ | — | ❌ | ✅ | ❌ |
+| `ContactPage` | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | — | ❌ | ❌ | ❌ |
+| `CreativeWork` | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | — | ❌ | ❌ | ❌ |
+| `FAQPage` | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | — | ❌ | ❌ | ❌ |
+| `HowTo` | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | — | ✅ | ❌ | ❌ |
+| `ImageObject` | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ | — | ❌ | ✅ | ❌ |
+| `ItemList` | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | — | ❌ | ❌ | ❌ |
+| `MedicalOrganization` | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | — | ❌ | ❌ | ❌ |
+| `MedicalScholarlyArticle` | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | — | ❌ | ❌ | ❌ |
+| `MedicalWebPage` | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | — | ❌ | ❌ | ❌ |
+| `NewsMediaOrganization` | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | — | ❌ | ❌ | ❌ |
+| `Organization` | ✅ | ✅ | ❌ | ❌ | ❌ | ✅ | — | ✅ | ✅ | ❌ |
+| `Person` | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | — | ❌ | ✅ | ❌ |
+| `Place` | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | — | ❌ | ❌ | ❌ |
+| `ProfessionalService` | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | — | ❌ | ❌ | ❌ |
+| `SoftwareApplication` | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | — | ✅ | ❌ | ❌ |
+| `VideoObject` | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | — | ✅ | ❌ | ❌ |
+| `WebPage` | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | — | ❌ | ✅ | ❌ |
+| `WebSite` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — | ✅ | ✅ | ❌ |
 
-> — = página não lida nesta rodada (bloqueio, erro HTTP ou conexão): Cannabis & Saúde. Ausência de leitura não é ausência de schema.
+> — = página não lida nesta rodada (bloqueio, erro HTTP ou conexão): ConectaMed Web. Ausência de leitura não é ausência de schema.
 
 ### 🏆 E-E-A-T e Autoridade Médica
 
-| Critério | Weedoo | Rocket Med | Anandamidia | WeCann Academy | Cannabis & Saúde | Dr. Cannabis | Cannect |
-|----------|--------|-------- | -------- | -------- | -------- | -------- | --------|
-| Autor estruturado (E-E-A-T) | ✅ | ❌ | ❌ | ✅ | — | ❌ | ✅ |
-| Publisher estruturado | ✅ | ❌ | ❌ | ✅ | — | ❌ | ✅ |
-| Schema médico (MedicalWebPage/Physician) | ✅ | ❌ | ❌ | ❌ | — | ❌ | ❌ |
-| Rich snippets (FAQ/HowTo/Video) | ✅ | ✅ | ✅ | ✅ | — | ✅ | ✅ |
-| BreadcrumbList | ✅ | ✅ | ✅ | ✅ | — | ✅ | ✅ |
+| Critério | Weedoo | WeCann Academy | Dr. Cannabis | Cannect | Sechat | Cannabis Monitor | ConectaMed Web | Kaya Doc | Kaya Mind | Click Cannabis |
+|----------|--------|-------- | -------- | -------- | -------- | -------- | -------- | -------- | -------- | --------|
+| Autor estruturado (E-E-A-T) | ✅ | ✅ | ❌ | ✅ | ❌ | ✅ | — | ✅ | ✅ | ❌ |
+| Publisher estruturado | ✅ | ✅ | ❌ | ✅ | ❌ | ✅ | — | ✅ | ✅ | ❌ |
+| Schema médico (MedicalWebPage/Physician) | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | — | ❌ | ❌ | ❌ |
+| Rich snippets (FAQ/HowTo/Video) | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | — | ✅ | ✅ | ❌ |
+| BreadcrumbList | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ | — | ✅ | ✅ | ❌ |
 
 ## 🎯 Top 5 Recomendações — Schemas Prontos por Página
 
@@ -266,7 +272,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
 
 **Prioridade:** 🔴 Crítica | **Impacto:** Campo determinante para ranqueamento de conteúdo YMYL (saúde)
 
-**15 artigo(s) precisam de correção:**
+**13 artigo(s) precisam de correção:**
 
 #### `/blog/guia-do-paciente/canabidiol-serve-para-quais-doencas`
 
@@ -277,7 +283,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Canabidiol Serve Para Quais Doencas",
-  "description": "Artigo sobre canabidiol serve para quais doencas por Carlos Macedo.",
+  "description": "Artigo sobre canabidiol serve para quais doencas pela Agência Weedoo.",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
@@ -291,13 +297,10 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/canabidiol-serve-para-quais-doencas/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -326,7 +329,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Como Conseguir Cannabis Medicinal Legalmente No Brasil Passo A Passo 2026",
-  "description": "Artigo sobre como conseguir cannabis medicinal legalmente no brasil passo a passo 2026 por Carlos Macedo.",
+  "description": "Artigo sobre como conseguir cannabis medicinal legalmente no brasil passo a passo 2026 pela Agência Weedoo.",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
@@ -340,13 +343,10 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/como-conseguir-cannabis-medicinal-legalmente-no-brasil-passo-a-passo-2026/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -375,7 +375,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Seo On Page Historia",
-  "description": "Artigo sobre seo on page historia por Carlos Macedo.",
+  "description": "Artigo sobre seo on page historia pela Agência Weedoo.",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
@@ -389,13 +389,10 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
     "@id": "https://www.weedoo.med.br/blog/seo/seo-onpage/seo-on-page-historia/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -424,7 +421,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Engenharia Digital Cannabis Medicinal Autoridade 2026",
-  "description": "Artigo sobre engenharia digital cannabis medicinal autoridade 2026 por Carlos Macedo.",
+  "description": "Artigo sobre engenharia digital cannabis medicinal autoridade 2026 pela Agência Weedoo.",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
@@ -438,13 +435,10 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
     "@id": "https://www.weedoo.med.br/blog/marketing-medico/engenharia-digital-cannabis-medicinal-autoridade-2026/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -473,7 +467,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Dentista Pode Prescrever Cannabis Rdc 1015 2026",
-  "description": "Artigo sobre dentista pode prescrever cannabis rdc 1015 2026 por Carlos Macedo.",
+  "description": "Artigo sobre dentista pode prescrever cannabis rdc 1015 2026 pela Agência Weedoo.",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
@@ -487,13 +481,10 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/dentista-pode-prescrever-cannabis-rdc-1015-2026/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -522,7 +513,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "O Guia Definitivo Da Ciencia Endocanabinoide Para Clinicas De Alta Performance Etica Mercado E Visibilidade",
-  "description": "Artigo sobre o guia definitivo da ciencia endocanabinoide para clinicas de alta performance etica mercado e visibilidade por Carlos Macedo.",
+  "description": "Artigo sobre o guia definitivo da ciencia endocanabinoide para clinicas de alta performance etica mercado e visibilidade pela Agência Weedoo.",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
@@ -536,13 +527,10 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
     "@id": "https://www.weedoo.med.br/blog/seo/o-guia-definitivo-da-ciencia-endocanabinoide-para-clinicas-de-alta-performance-etica-mercado-e-visibilidade/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -571,7 +559,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Efeito Entourage Pratica Clinica Full Spectrum Isolado",
-  "description": "Artigo sobre efeito entourage pratica clinica full spectrum isolado por Carlos Macedo.",
+  "description": "Artigo sobre efeito entourage pratica clinica full spectrum isolado pela Agência Weedoo.",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
@@ -585,13 +573,10 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
     "@id": "https://www.weedoo.med.br/blog/ciencia-endocanabinoide/efeito-entourage-pratica-clinica-full-spectrum-isolado/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -620,7 +605,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Canabidiol O Que E Para Que Serve",
-  "description": "Artigo sobre canabidiol o que e para que serve por Carlos Macedo.",
+  "description": "Artigo sobre canabidiol o que e para que serve pela Agência Weedoo.",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
@@ -634,13 +619,10 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/canabidiol-o-que-e-para-que-serve/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -669,7 +651,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Oleo De Canabidiol Para Que Serve Beneficios",
-  "description": "Artigo sobre oleo de canabidiol para que serve beneficios por Carlos Macedo.",
+  "description": "Artigo sobre oleo de canabidiol para que serve beneficios pela Agência Weedoo.",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
@@ -683,111 +665,10 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/oleo-de-canabidiol-para-que-serve-beneficios/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
-  },
-  "publisher": {
     "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
     "name": "Agência Weedoo",
-    "url": "https://www.weedoo.med.br/",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.weedoo.med.br/wp-content/uploads/logo-weedoo.png",
-      "width": 600,
-      "height": 60
-    }
-  },
-  "articleSection": "Cannabis Medicinal",
-  "keywords": "cannabis medicinal, CBD, medicina endocanabinoide, Anvisa",
-  "inLanguage": "pt-BR"
-}
-</script>
-```
-
-#### `/blog/guia-do-paciente/maconha-medicinal-vicia`
-
-```html
-<!-- Article Schema — /blog/guia-do-paciente/maconha-medicinal-vicia -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Maconha Medicinal Vicia",
-  "description": "Artigo sobre maconha medicinal vicia por Carlos Macedo.",
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
-    "width": 1200,
-    "height": 630
-  },
-  "datePublished": "2026-10-26T08:00:00-03:00",
-  "dateModified": "2026-10-26T08:00:00-03:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/maconha-medicinal-vicia/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Agência Weedoo",
-    "url": "https://www.weedoo.med.br/",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.weedoo.med.br/wp-content/uploads/logo-weedoo.png",
-      "width": 600,
-      "height": 60
-    }
-  },
-  "articleSection": "Cannabis Medicinal",
-  "keywords": "cannabis medicinal, CBD, medicina endocanabinoide, Anvisa",
-  "inLanguage": "pt-BR"
-}
-</script>
-```
-
-#### `/blog/guia-do-paciente/onde-conseguir-cannabis-medicinal`
-
-```html
-<!-- Article Schema — /blog/guia-do-paciente/onde-conseguir-cannabis-medicinal -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Onde Conseguir Cannabis Medicinal",
-  "description": "Artigo sobre onde conseguir cannabis medicinal por Carlos Macedo.",
-  "image": {
-    "@type": "ImageObject",
-    "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
-    "width": 1200,
-    "height": 630
-  },
-  "datePublished": "2026-10-26T08:00:00-03:00",
-  "dateModified": "2026-10-26T08:00:00-03:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/onde-conseguir-cannabis-medicinal/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -816,7 +697,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Cannabis Medicinal Quanto Custa O Tratamento Em 2026",
-  "description": "Artigo sobre cannabis medicinal quanto custa o tratamento em 2026 por Carlos Macedo.",
+  "description": "Artigo sobre cannabis medicinal quanto custa o tratamento em 2026 pela Agência Weedoo.",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
@@ -830,13 +711,10 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/cannabis-medicinal-quanto-custa-o-tratamento-em-2026/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -865,7 +743,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Ciencia Endocanabinoide Como A Nova Producao Nacional E O Aval Do Stj Blindam Seu Consultorio",
-  "description": "Artigo sobre ciencia endocanabinoide como a nova producao nacional e o aval do stj blindam seu consultorio por Carlos Macedo.",
+  "description": "Artigo sobre ciencia endocanabinoide como a nova producao nacional e o aval do stj blindam seu consultorio pela Agência Weedoo.",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
@@ -879,13 +757,10 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
     "@id": "https://www.weedoo.med.br/blog/marketing-medico/ciencia-endocanabinoide-como-a-nova-producao-nacional-e-o-aval-do-stj-blindam-seu-consultorio/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -914,7 +789,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Geo E Aeo Como Fazer O Chatgpt E O Gemini Recomendarem O Seu Consultorio",
-  "description": "Artigo sobre geo e aeo como fazer o chatgpt e o gemini recomendarem o seu consultorio por Carlos Macedo.",
+  "description": "Artigo sobre geo e aeo como fazer o chatgpt e o gemini recomendarem o seu consultorio pela Agência Weedoo.",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
@@ -928,13 +803,10 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
     "@id": "https://www.weedoo.med.br/blog/seo/geo-e-aeo-como-fazer-o-chatgpt-e-o-gemini-recomendarem-o-seu-consultorio/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -963,7 +835,7 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Ciencia Da Visibilidade Seo De Alta Performance Inteligencia De Dados Para Mercado De Cannabis",
-  "description": "Artigo sobre ciencia da visibilidade seo de alta performance inteligencia de dados para mercado de cannabis por Carlos Macedo.",
+  "description": "Artigo sobre ciencia da visibilidade seo de alta performance inteligencia de dados para mercado de cannabis pela Agência Weedoo.",
   "image": {
     "@type": "ImageObject",
     "url": "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg",
@@ -977,13 +849,10 @@ Auditoria de **26/10/2026** — **21 páginas** (21 acessíveis) e **6 concorren
     "@id": "https://www.weedoo.med.br/blog/seo/ciencia-da-visibilidade-seo-de-alta-performance-inteligencia-de-dados-para-mercado-de-cannabis/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -1420,7 +1289,7 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 
 **2 erro(s) crítico(s):**
 1. 🔴 [MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'
-2. 🔴 [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+2. 🔴 [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 
 **4 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
@@ -1451,13 +1320,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/canabidiol-serve-para-quais-doencas/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -1479,7 +1345,7 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 #### `/blog/guia-do-paciente/como-conseguir-cannabis-medicinal-legalmente-no-brasil-passo-a-passo-2026` — 🟡 Atenção
 
 **1 erro(s) crítico(s):**
-1. 🔴 [Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+1. 🔴 [Article] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 
 **2 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
@@ -1508,13 +1374,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/como-conseguir-cannabis-medicinal-legalmente-no-brasil-passo-a-passo-2026/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -1536,7 +1399,7 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 #### `/blog/seo/seo-onpage/seo-on-page-historia` — 🟡 Atenção
 
 **1 erro(s) crítico(s):**
-1. 🔴 [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+1. 🔴 [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 
 **4 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
@@ -1567,13 +1430,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/seo/seo-onpage/seo-on-page-historia/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -1596,7 +1456,7 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 
 **2 erro(s) crítico(s):**
 1. 🔴 [Article] Campo obrigatório ausente ou vazio: 'image'
-2. 🔴 [Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+2. 🔴 [Article] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 
 **5 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
@@ -1628,13 +1488,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/marketing-medico/engenharia-digital-cannabis-medicinal-autoridade-2026/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -1702,13 +1559,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/dentista-pode-prescrever-cannabis-rdc-1015-2026/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -1730,7 +1584,7 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 #### `/blog/seo/o-guia-definitivo-da-ciencia-endocanabinoide-para-clinicas-de-alta-performance-etica-mercado-e-visibilidade` — 🟡 Atenção
 
 **1 erro(s) crítico(s):**
-1. 🔴 [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+1. 🔴 [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 
 **4 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
@@ -1761,13 +1615,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/seo/o-guia-definitivo-da-ciencia-endocanabinoide-para-clinicas-de-alta-performance-etica-mercado-e-visibilidade/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -1792,7 +1643,7 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 1. 🔴 [MedicalWebPage] Campo obrigatório ausente ou vazio: 'name'
 2. 🔴 [MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'
 3. 🔴 [Article] Campo obrigatório ausente ou vazio: 'mainEntityOfPage'
-4. 🔴 [Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+4. 🔴 [Article] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 
 **5 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
@@ -1824,13 +1675,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/ciencia-endocanabinoide/efeito-entourage-pratica-clinica-full-spectrum-isolado/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -1853,7 +1701,7 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 
 **2 erro(s) crítico(s):**
 1. 🔴 [MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'
-2. 🔴 [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+2. 🔴 [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 
 **4 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
@@ -1884,13 +1732,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/canabidiol-o-que-e-para-que-serve/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -1913,7 +1758,7 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 
 **2 erro(s) crítico(s):**
 1. 🔴 [MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'
-2. 🔴 [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+2. 🔴 [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 
 **4 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
@@ -1944,13 +1789,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/oleo-de-canabidiol-para-que-serve-beneficios/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -1969,17 +1811,16 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 </script>
 ```
 
-#### `/blog/guia-do-paciente/maconha-medicinal-vicia` — 🟡 Atenção
+#### `/blog/guia-do-paciente/maconha-medicinal-vicia` — 🟢 OK
 
-**1 erro(s) crítico(s):**
-1. 🔴 [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']
-
-**5 ponto(s) de atenção:**
+**7 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 2. 🟡 [Organization] Organization.telephone ausente — recomendado para SEO local e contato
-3. 🟡 [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
-4. 🟡 [BlogPosting] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo
-5. 🟡 [BlogPosting] Campo 'keywords' ausente — importante para relevância temática
+3. 🟡 [BlogPosting] author não referencia o nó da organização ('https://www.weedoo.med.br/#Organization'). Use {"@id": "https://www.weedoo.med.br/#Organization"} para autor e publisher serem o mesmo objeto.
+4. 🟡 [BlogPosting] author.sameAs vazio — inclua os perfis oficiais da agência (Instagram, LinkedIn da empresa) para reforçar a entidade.
+5. 🟡 [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
+6. 🟡 [BlogPosting] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo
+7. 🟡 [BlogPosting] Campo 'keywords' ausente — importante para relevância temática
 
 **Bloco HTML — cole no editor desta página (bloco HTML Personalizado):**
 
@@ -2004,13 +1845,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/maconha-medicinal-vicia/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -2029,17 +1867,16 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 </script>
 ```
 
-#### `/blog/guia-do-paciente/onde-conseguir-cannabis-medicinal` — 🟡 Atenção
+#### `/blog/guia-do-paciente/onde-conseguir-cannabis-medicinal` — 🟢 OK
 
-**1 erro(s) crítico(s):**
-1. 🔴 [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']
-
-**5 ponto(s) de atenção:**
+**7 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
 2. 🟡 [Organization] Organization.telephone ausente — recomendado para SEO local e contato
-3. 🟡 [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
-4. 🟡 [BlogPosting] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo
-5. 🟡 [BlogPosting] Campo 'keywords' ausente — importante para relevância temática
+3. 🟡 [BlogPosting] author não referencia o nó da organização ('https://www.weedoo.med.br/#Organization'). Use {"@id": "https://www.weedoo.med.br/#Organization"} para autor e publisher serem o mesmo objeto.
+4. 🟡 [BlogPosting] author.sameAs vazio — inclua os perfis oficiais da agência (Instagram, LinkedIn da empresa) para reforçar a entidade.
+5. 🟡 [BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz
+6. 🟡 [BlogPosting] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo
+7. 🟡 [BlogPosting] Campo 'keywords' ausente — importante para relevância temática
 
 **Bloco HTML — cole no editor desta página (bloco HTML Personalizado):**
 
@@ -2064,13 +1901,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/onde-conseguir-cannabis-medicinal/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -2093,7 +1927,7 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 
 **2 erro(s) crítico(s):**
 1. 🔴 [MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'
-2. 🔴 [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+2. 🔴 [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 
 **4 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
@@ -2124,13 +1958,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/guia-do-paciente/cannabis-medicinal-quanto-custa-o-tratamento-em-2026/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -2154,7 +1985,7 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 **3 erro(s) crítico(s):**
 1. 🔴 [WebPage] Campo obrigatório ausente ou vazio: 'name'
 2. 🔴 [WebPage] Campo obrigatório ausente ou vazio: 'url'
-3. 🔴 [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+3. 🔴 [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 
 **4 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
@@ -2185,13 +2016,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/marketing-medico/ciencia-endocanabinoide-como-a-nova-producao-nacional-e-o-aval-do-stj-blindam-seu-consultorio/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -2213,7 +2041,7 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 #### `/blog/seo/geo-e-aeo-como-fazer-o-chatgpt-e-o-gemini-recomendarem-o-seu-consultorio` — 🟡 Atenção
 
 **1 erro(s) crítico(s):**
-1. 🔴 [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+1. 🔴 [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 
 **4 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
@@ -2244,13 +2072,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/seo/geo-e-aeo-como-fazer-o-chatgpt-e-o-gemini-recomendarem-o-seu-consultorio/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
@@ -2272,7 +2097,7 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
 #### `/blog/seo/ciencia-da-visibilidade-seo-de-alta-performance-inteligencia-de-dados-para-mercado-de-cannabis` — 🟡 Atenção
 
 **1 erro(s) crítico(s):**
-1. 🔴 [BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']
+1. 🔴 [BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']
 
 **4 ponto(s) de atenção:**
 1. 🟡 [Organization] Organization.sameAs não inclui o LinkedIn da Weedoo
@@ -2303,13 +2128,10 @@ Como você usa o **tema Astra com child theme**, o método mais seguro e direto 
     "@id": "https://www.weedoo.med.br/blog/seo/ciencia-da-visibilidade-seo-de-alta-performance-inteligencia-de-dados-para-mercado-de-cannabis/"
   },
   "author": {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-      "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-      "https://agenciaweedoo.github.io/my-portifolio/"
-    ]
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/"
   },
   "publisher": {
     "@type": "Organization",
