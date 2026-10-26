@@ -1,27 +1,9 @@
 [
   {
-    "nome": "Rocket Med",
-    "home": "https://www.medrocket.com.br/",
-    "blog": "https://www.medrocket.com.br/index.html#cases",
-    "notas": "Agência de marketing médico — concorrente direto em estratégia digital para saúde"
-  },
-  {
-    "nome": "Anandamidia",
-    "home": "https://www.anandamidia.com.br",
-    "blog": "https://www.anandamidia.com.br/blog/",
-    "notas": "NOVO — Se autodeclara 'primeira agência de comunicação especializada em cannabis no Brasil'. Concorrente direto e altamente relevante para benchmarking de schema e E-E-A-T."
-  },
-  {
     "nome": "WeCann Academy",
     "home": "https://wecann.academy/",
     "blog": "https://wecann.academy/blog/",
     "notas": "Academia de educação em cannabis medicinal — forte em conteúdo educacional"
-  },
-  {
-    "nome": "Cannabis & Saúde",
-    "home": "https://www.cannabisesaude.com.br/",
-    "blog": "https://www.cannabisesaude.com.br/ultimas-noticias/",
-    "notas": "Portal de informação sobre cannabis medicinal no Brasil"
   },
   {
     "nome": "Dr. Cannabis",
@@ -34,5 +16,23 @@
     "home": "https://www.cannect.life/",
     "blog": "https://blog.cannect.life/",
     "notas": "ADICIONADO — Marketplace de cannabis medicinal com blog ativo sobre tratamentos; forte autoridade de domínio e presença em buscas de fundo de funil (ex.: 'comprar CBD')"
+  },
+  {
+    "nome": "Cannabis Monitor",
+    "home": "https://cannabismonitor.com.br/",
+    "blog": "https://cannabismonitor.com.br/noticias/",
+    "notas": "Portal de notícias e análise do setor, também voltado a médicos. Substitui Cannabis & Saúde (bloqueia bots via Cloudflare). Incluído em 26/10/2026."
+  },
+  {
+    "nome": "Kaya Doc",
+    "home": "https://kayadoc.com.br/",
+    "blog": "https://kayadoc.com.br/blog/",
+    "notas": "Plataforma da Kaya Mind para médicos prescritores; publica conteúdo de visibilidade e SEO para médicos — disputa o mesmo público da Weedoo. Substitui Rocket Med. Incluído em 26/10/2026."
+  },
+  {
+    "nome": "Kaya Mind",
+    "home": "https://kayamind.com/",
+    "blog": "https://kayamind.com/blog/",
+    "notas": "Inteligência de mercado de cannabis; blog ativo com conteúdo de marketing para empresas e associações do setor. Mesmo grupo da Kaya Doc, público diferente. Substitui Anandamidia. Incluído em 26/10/2026."
   }
 ]

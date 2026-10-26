@@ -15,15 +15,19 @@ from pathlib import Path
 logger = logging.getLogger("relatorio")
 
 # ─── Dados fixos do autor e organização ───────────────────────────────────────
+# Desde 26/10/2026 os artigos são assinados pela Agência Weedoo (organização).
+# O autor aponta para o mesmo nó do publisher.
 AUTOR = {
-    "@type": "Person",
-    "name": "Carlos Macedo",
-    "url": "https://www.weedoo.med.br/sobre/",
-    "sameAs": [
-        "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/",
-        "https://agenciaweedoo.github.io/my-portifolio/",
-    ],
+    "@type": "Organization",
+    "@id": "https://www.weedoo.med.br/#Organization",
+    "name": "Agência Weedoo",
+    "url": "https://www.weedoo.med.br/",
 }
+
+# Revisão médica de conteúdo clínico (reviewedBy) é de um profissional de
+# saúde, nunca da agência. Este é o nó do revisor já usado no site; troque
+# no bloco gerado se o artigo tiver sido revisado por outra pessoa.
+REVISOR_MEDICO = {"@id": "https://www.weedoo.med.br/#revisor-regis-rossi"}
 
 PUBLISHER = {
     "@type": "Organization",
@@ -439,7 +443,7 @@ def gerar_recomendacoes(resultados_weedoo: list[dict], comparacao: list[dict]) -
     com_erro_autor = [
         r for r in artigos
         if any(t in r.get("tipos_presentes", []) for t in ("Article", "BlogPosting"))
-        and any("author" in e.lower() or "carlos" in e.lower() or "publisher" in e.lower()
+        and any("author" in e.lower() or "autor" in e.lower() or "publisher" in e.lower()
                 for e in r.get("todos_erros", []))
     ]
     # Para REC1, combinar sem_article + com_erro_autor
@@ -462,7 +466,7 @@ def gerar_recomendacoes(resultados_weedoo: list[dict], comparacao: list[dict]) -
             meta = r.get("metadados", {})
             url = r["url"]
             titulo = meta.get("titulo") or url.split("/")[-2].replace("-", " ").title()
-            descricao = meta.get("descricao") or f"Artigo sobre {titulo.lower()} por Carlos Macedo."
+            descricao = meta.get("descricao") or f"Artigo sobre {titulo.lower()} pela Agência Weedoo."
             imagem = meta.get("imagem") or "https://www.weedoo.med.br/wp-content/uploads/imagem-artigo.jpg"
             data_pub = meta.get("data_publicacao") or date.today().strftime("%Y-%m-%dT08:00:00-03:00")
             data_mod = meta.get("data_modificacao") or data_pub
@@ -579,7 +583,7 @@ def gerar_recomendacoes(resultados_weedoo: list[dict], comparacao: list[dict]) -
                 "description": descricao[:200] if descricao else f"Conteúdo clínico sobre {condicao.lower()}.",
                 "inLanguage": "pt-BR",
                 "lastReviewed": data_mod[:10] if data_mod else date.today().isoformat(),
-                "reviewedBy": AUTOR,
+                "reviewedBy": REVISOR_MEDICO,
                 "specialty": {
                     "@type": "MedicalSpecialty",
                     "name": especialidade,
@@ -592,6 +596,7 @@ def gerar_recomendacoes(resultados_weedoo: list[dict], comparacao: list[dict]) -
             }
 
             linhas.append(f"#### `{_url_curta(url)}` — {especialidade}\n")
+            linhas.append("> `reviewedBy` aponta para o revisor médico já cadastrado no site. Troque se este artigo teve outro revisor.\n")
             linhas.append(_bloco_html(schema, f"MedicalWebPage — {_url_curta(url)}"))
             linhas.append("")
 

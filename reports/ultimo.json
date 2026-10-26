@@ -159,7 +159,7 @@
         ],
         "erros": [
           "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -188,7 +188,7 @@
           "CreativeWork"
         ],
         "erros": [
-          "[Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[Article] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -214,7 +214,7 @@
           "CreativeWork"
         ],
         "erros": [
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -243,7 +243,7 @@
         ],
         "erros": [
           "[Article] Campo obrigatório ausente ou vazio: 'image'",
-          "[Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[Article] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -315,7 +315,7 @@
           "CreativeWork"
         ],
         "erros": [
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -346,7 +346,7 @@
           "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'name'",
           "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
           "[Article] Campo obrigatório ausente ou vazio: 'mainEntityOfPage'",
-          "[Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[Article] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -376,7 +376,7 @@
         ],
         "erros": [
           "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -405,7 +405,7 @@
         ],
         "erros": [
           "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -432,12 +432,12 @@
           "Blog",
           "CreativeWork"
         ],
-        "erros": [
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
-        ],
+        "erros": [],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
           "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[BlogPosting] author não referencia o nó da organização ('https://www.weedoo.med.br/#Organization'). Use {\"@id\": \"https://www.weedoo.med.br/#Organization\"} para autor e publisher serem o mesmo objeto.",
+          "[BlogPosting] author.sameAs vazio — inclua os perfis oficiais da agência (Instagram, LinkedIn da empresa) para reforçar a entidade.",
           "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
           "[BlogPosting] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo",
           "[BlogPosting] Campo 'keywords' ausente — importante para relevância temática"
@@ -461,12 +461,12 @@
           "Blog",
           "CreativeWork"
         ],
-        "erros": [
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
-        ],
+        "erros": [],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
           "[Organization] Organization.telephone ausente — recomendado para SEO local e contato",
+          "[BlogPosting] author não referencia o nó da organização ('https://www.weedoo.med.br/#Organization'). Use {\"@id\": \"https://www.weedoo.med.br/#Organization\"} para autor e publisher serem o mesmo objeto.",
+          "[BlogPosting] author.sameAs vazio — inclua os perfis oficiais da agência (Instagram, LinkedIn da empresa) para reforçar a entidade.",
           "[BlogPosting] Campo 'speakable' ausente — melhora acessibilidade e pode favorecer featured snippets de voz",
           "[BlogPosting] Campo 'articleSection' ausente — ajuda o Google a categorizar o conteúdo",
           "[BlogPosting] Campo 'keywords' ausente — importante para relevância temática"
@@ -492,7 +492,7 @@
         ],
         "erros": [
           "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -521,7 +521,7 @@
         "erros": [
           "[WebPage] Campo obrigatório ausente ou vazio: 'name'",
           "[WebPage] Campo obrigatório ausente ou vazio: 'url'",
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -549,7 +549,7 @@
           "CreativeWork"
         ],
         "erros": [
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -577,7 +577,7 @@
           "CreativeWork"
         ],
         "erros": [
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor esperado ('Agência Weedoo', Organization) não encontrado no campo 'author'. Autores presentes: ['Carline']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -605,98 +605,9 @@
       "WebPage",
       "WebSite"
     ],
-    "total_erros": 40
+    "total_erros": 38
   },
   "concorrentes": [
-    {
-      "nome": "Rocket Med",
-      "home": "https://www.medrocket.com.br/",
-      "blog": "https://www.medrocket.com.br/index.html#cases",
-      "paginas_lidas": 2,
-      "paginas_tentadas": 2,
-      "tipos": [
-        "BreadcrumbList",
-        "FAQPage",
-        "ProfessionalService"
-      ],
-      "tem_eeat": false,
-      "tem_medical_schema": false,
-      "tem_rich_snippets": true,
-      "paginas": [
-        {
-          "url": "https://www.medrocket.com.br/",
-          "acessivel": true,
-          "bloqueio": null,
-          "tipos": [
-            "BreadcrumbList",
-            "FAQPage",
-            "ProfessionalService"
-          ],
-          "tem_author": false,
-          "tem_publisher": false,
-          "tem_medical_schema": false
-        },
-        {
-          "url": "https://www.medrocket.com.br/index.html#cases",
-          "acessivel": true,
-          "bloqueio": null,
-          "tipos": [
-            "BreadcrumbList",
-            "FAQPage",
-            "ProfessionalService"
-          ],
-          "tem_author": false,
-          "tem_publisher": false,
-          "tem_medical_schema": false
-        }
-      ]
-    },
-    {
-      "nome": "Anandamidia",
-      "home": "https://www.anandamidia.com.br",
-      "blog": "https://www.anandamidia.com.br/blog/",
-      "paginas_lidas": 2,
-      "paginas_tentadas": 2,
-      "tipos": [
-        "BreadcrumbList",
-        "ImageObject",
-        "WebPage",
-        "WebSite"
-      ],
-      "tem_eeat": false,
-      "tem_medical_schema": false,
-      "tem_rich_snippets": true,
-      "paginas": [
-        {
-          "url": "https://www.anandamidia.com.br",
-          "acessivel": true,
-          "bloqueio": null,
-          "tipos": [
-            "BreadcrumbList",
-            "ImageObject",
-            "WebPage",
-            "WebSite"
-          ],
-          "tem_author": false,
-          "tem_publisher": false,
-          "tem_medical_schema": false
-        },
-        {
-          "url": "https://www.anandamidia.com.br/blog/",
-          "acessivel": true,
-          "bloqueio": null,
-          "tipos": [
-            "BreadcrumbList",
-            "ImageObject",
-            "WebPage",
-            "WebSite"
-          ],
-          "tem_author": false,
-          "tem_publisher": false,
-          "tem_medical_schema": false
-        }
-      ]
-    },
     {
       "nome": "WeCann Academy",
       "home": "https://wecann.academy/",
@@ -802,37 +713,6 @@
           ],
           "tem_author": true,
           "tem_publisher": true,
-          "tem_medical_schema": false
-        }
-      ]
-    },
-    {
-      "nome": "Cannabis & Saúde",
-      "home": "https://www.cannabisesaude.com.br/",
-      "blog": "https://www.cannabisesaude.com.br/ultimas-noticias/",
-      "paginas_lidas": 0,
-      "paginas_tentadas": 2,
-      "tipos": [],
-      "tem_eeat": false,
-      "tem_medical_schema": false,
-      "tem_rich_snippets": false,
-      "paginas": [
-        {
-          "url": "https://www.cannabisesaude.com.br/",
-          "acessivel": false,
-          "bloqueio": "cloudflare",
-          "tipos": [],
-          "tem_author": false,
-          "tem_publisher": false,
-          "tem_medical_schema": false
-        },
-        {
-          "url": "https://www.cannabisesaude.com.br/ultimas-noticias/",
-          "acessivel": false,
-          "bloqueio": "cloudflare",
-          "tipos": [],
-          "tem_author": false,
-          "tem_publisher": false,
           "tem_medical_schema": false
         }
       ]
@@ -1014,6 +894,429 @@
           ],
           "tem_author": true,
           "tem_publisher": true,
+          "tem_medical_schema": false
+        }
+      ]
+    },
+    {
+      "nome": "Sechat",
+      "home": "https://sechat.com.br/",
+      "blog": "https://sechat.com.br/noticias",
+      "paginas_lidas": 1,
+      "paginas_tentadas": 2,
+      "tipos": [
+        "CollectionPage",
+        "ItemList",
+        "NewsMediaOrganization",
+        "WebSite"
+      ],
+      "tem_eeat": false,
+      "tem_medical_schema": false,
+      "tem_rich_snippets": false,
+      "paginas": [
+        {
+          "url": "https://sechat.com.br/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "CollectionPage",
+            "ItemList",
+            "NewsMediaOrganization",
+            "WebSite"
+          ],
+          "tem_author": false,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://sechat.com.br/noticias",
+          "acessivel": false,
+          "bloqueio": "http_erro",
+          "tipos": [],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        }
+      ]
+    },
+    {
+      "nome": "Cannabis Monitor",
+      "home": "https://cannabismonitor.com.br/",
+      "blog": "https://cannabismonitor.com.br/",
+      "paginas_lidas": 5,
+      "paginas_tentadas": 5,
+      "tipos": [
+        "Article",
+        "ImageObject",
+        "NewsMediaOrganization",
+        "Organization",
+        "Person",
+        "VideoObject",
+        "WebPage",
+        "WebSite"
+      ],
+      "tem_eeat": true,
+      "tem_medical_schema": false,
+      "tem_rich_snippets": true,
+      "paginas": [
+        {
+          "url": "https://cannabismonitor.com.br/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "ImageObject",
+            "NewsMediaOrganization",
+            "Organization",
+            "Person",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://cannabismonitor.com.br/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "ImageObject",
+            "NewsMediaOrganization",
+            "Organization",
+            "Person",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://cannabismonitor.com.br/noticias/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "NewsMediaOrganization",
+            "Organization",
+            "Person",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://cannabismonitor.com.br/20-anos-da-lei-de-drogas-11-343-2006/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "ImageObject",
+            "NewsMediaOrganization",
+            "Organization",
+            "Person",
+            "VideoObject",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://cannabismonitor.com.br/calendario-eventos/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "ImageObject",
+            "NewsMediaOrganization",
+            "Organization",
+            "Person",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        }
+      ]
+    },
+    {
+      "nome": "ConectaMed Web",
+      "home": "https://conectamedweb.com.br/",
+      "blog": "https://conectamedweb.com.br/blog/",
+      "paginas_lidas": 0,
+      "paginas_tentadas": 2,
+      "tipos": [],
+      "tem_eeat": false,
+      "tem_medical_schema": false,
+      "tem_rich_snippets": false,
+      "paginas": [
+        {
+          "url": "https://conectamedweb.com.br/",
+          "acessivel": false,
+          "bloqueio": "conexao",
+          "tipos": [],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://conectamedweb.com.br/blog/",
+          "acessivel": false,
+          "bloqueio": "conexao",
+          "tipos": [],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        }
+      ]
+    },
+    {
+      "nome": "Kaya Doc",
+      "home": "https://kayadoc.com.br/",
+      "blog": "https://kayadoc.com.br/blog/",
+      "paginas_lidas": 5,
+      "paginas_tentadas": 5,
+      "tipos": [
+        "Article",
+        "BreadcrumbList",
+        "HowTo",
+        "Organization",
+        "SoftwareApplication",
+        "VideoObject",
+        "WebSite"
+      ],
+      "tem_eeat": true,
+      "tem_medical_schema": false,
+      "tem_rich_snippets": true,
+      "paginas": [
+        {
+          "url": "https://kayadoc.com.br/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "HowTo",
+            "Organization",
+            "SoftwareApplication",
+            "VideoObject",
+            "WebSite"
+          ],
+          "tem_author": false,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://kayadoc.com.br/blog/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "BreadcrumbList"
+          ],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://kayadoc.com.br/blog/canabidiol-sono/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "BreadcrumbList"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://kayadoc.com.br/blog/canabidiol-no-sus-sao-paulo/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "BreadcrumbList"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://kayadoc.com.br/blog/visibilidade-medicos-dentistas-online/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "BreadcrumbList"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        }
+      ]
+    },
+    {
+      "nome": "Kaya Mind",
+      "home": "https://kayamind.com/",
+      "blog": "https://kayamind.com/blog/",
+      "paginas_lidas": 5,
+      "paginas_tentadas": 5,
+      "tipos": [
+        "Article",
+        "BreadcrumbList",
+        "CollectionPage",
+        "ImageObject",
+        "Organization",
+        "Person",
+        "WebPage",
+        "WebSite"
+      ],
+      "tem_eeat": true,
+      "tem_medical_schema": false,
+      "tem_rich_snippets": true,
+      "paginas": [
+        {
+          "url": "https://kayamind.com/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "BreadcrumbList",
+            "ImageObject",
+            "Organization",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": false,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://kayamind.com/blog/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "BreadcrumbList",
+            "CollectionPage",
+            "Organization",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": false,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://kayamind.com/crema-cultural-2026/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "BreadcrumbList",
+            "ImageObject",
+            "Organization",
+            "Person",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://kayamind.com/abrapango-gptw-associacao-cannabis-medicinal/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "BreadcrumbList",
+            "ImageObject",
+            "Organization",
+            "Person",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://kayamind.com/congresso-cannabis-usp/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [
+            "Article",
+            "BreadcrumbList",
+            "ImageObject",
+            "Organization",
+            "Person",
+            "WebPage",
+            "WebSite"
+          ],
+          "tem_author": true,
+          "tem_publisher": true,
+          "tem_medical_schema": false
+        }
+      ]
+    },
+    {
+      "nome": "Click Cannabis",
+      "home": "https://clickcannabis.com/",
+      "blog": "https://clickcannabis.com/blog/",
+      "paginas_lidas": 2,
+      "paginas_tentadas": 5,
+      "tipos": [],
+      "tem_eeat": false,
+      "tem_medical_schema": false,
+      "tem_rich_snippets": false,
+      "paginas": [
+        {
+          "url": "https://clickcannabis.com/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://clickcannabis.com/blog/",
+          "acessivel": true,
+          "bloqueio": null,
+          "tipos": [],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://clickcannabis.com/alergia-oleo-cannabis/",
+          "acessivel": false,
+          "bloqueio": "http_erro",
+          "tipos": [],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://clickcannabis.com/quem-usa-canabidiol-pode-dirigir/",
+          "acessivel": false,
+          "bloqueio": "http_erro",
+          "tipos": [],
+          "tem_author": false,
+          "tem_publisher": false,
+          "tem_medical_schema": false
+        },
+        {
+          "url": "https://clickcannabis.com/canabidiol-e-sertralina/",
+          "acessivel": false,
+          "bloqueio": "http_erro",
+          "tipos": [],
+          "tem_author": false,
+          "tem_publisher": false,
           "tem_medical_schema": false
         }
       ]

@@ -46,11 +46,14 @@ HEADERS_PADRAO: dict[str, str] = {
 }
 
 # ─── Dados do autor para validação E-E-A-T ────────────────────────────────────
+# Desde 26/10/2026 os artigos são assinados pela organização, não por uma
+# pessoa: o redator (assinatura "Carline") escreve em nome da Agência Weedoo.
+# O autor esperado é o mesmo nó Organization usado como publisher.
 
-AUTOR_NOME = "Carlos Macedo"
-AUTOR_URL_SOBRE = "https://www.weedoo.med.br/sobre/"
-AUTOR_LINKEDIN = "https://www.linkedin.com/in/carlos-henrique-lopes-macedo/"
-AUTOR_PORTFOLIO = "https://agenciaweedoo.github.io/my-portifolio/"
+AUTOR_NOME = "Agência Weedoo"
+AUTOR_TIPO = "Organization"
+AUTOR_ID = "https://www.weedoo.med.br/#Organization"
+AUTOR_URL = "https://www.weedoo.med.br/"
 
 # ─── Dados da organização ─────────────────────────────────────────────────────
 
