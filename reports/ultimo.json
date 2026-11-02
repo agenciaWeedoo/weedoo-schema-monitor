@@ -1,6 +1,6 @@
 {
   "versao_formato": 1,
-  "data": "2026-10-26",
+  "data": "2026-11-02",
   "gerado_por": "WeedooSEOMonitorBot",
   "weedoo": {
     "paginas": [
@@ -159,7 +159,7 @@
         ],
         "erros": [
           "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -188,7 +188,7 @@
           "CreativeWork"
         ],
         "erros": [
-          "[Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -214,7 +214,7 @@
           "CreativeWork"
         ],
         "erros": [
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -242,8 +242,7 @@
           "CreativeWork"
         ],
         "erros": [
-          "[Article] Campo obrigatório ausente ou vazio: 'image'",
-          "[Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -274,17 +273,8 @@
         ],
         "erros": [
           "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
-          "[Article] Campo obrigatório ausente ou vazio: 'author'",
-          "[Article] Campo obrigatório ausente ou vazio: 'datePublished'",
-          "[Article] Campo obrigatório ausente ou vazio: 'dateModified'",
-          "[Article] Campo obrigatório ausente ou vazio: 'publisher'",
-          "[Article] Campo 'author' está ausente no schema Article",
-          "[Article] Campo 'publisher' ausente (obrigatório para Article rich snippets)",
-          "[BlogPosting] Campo obrigatório ausente ou vazio: 'author'",
-          "[BlogPosting] Campo obrigatório ausente ou vazio: 'datePublished'",
-          "[BlogPosting] Campo obrigatório ausente ou vazio: 'publisher'",
-          "[BlogPosting] Campo 'author' está ausente no schema Article",
-          "[BlogPosting] Campo 'publisher' ausente (obrigatório para Article rich snippets)"
+          "[Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']",
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -315,7 +305,7 @@
           "CreativeWork"
         ],
         "erros": [
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -343,10 +333,8 @@
           "CreativeWork"
         ],
         "erros": [
-          "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'name'",
           "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
-          "[Article] Campo obrigatório ausente ou vazio: 'mainEntityOfPage'",
-          "[Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[Article] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -376,7 +364,7 @@
         ],
         "erros": [
           "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -405,7 +393,7 @@
         ],
         "erros": [
           "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -492,7 +480,7 @@
         ],
         "erros": [
           "[MedicalWebPage] Campo obrigatório ausente ou vazio: 'specialty'",
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -519,9 +507,7 @@
           "CreativeWork"
         ],
         "erros": [
-          "[WebPage] Campo obrigatório ausente ou vazio: 'name'",
-          "[WebPage] Campo obrigatório ausente ou vazio: 'url'",
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -549,7 +535,7 @@
           "CreativeWork"
         ],
         "erros": [
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -577,7 +563,7 @@
           "CreativeWork"
         ],
         "erros": [
-          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Carline']"
+          "[BlogPosting] Autor 'Carlos Macedo' não encontrado no campo 'author'. Autores presentes: ['Agência Weedoo']"
         ],
         "avisos": [
           "[Organization] Organization.sameAs não inclui o LinkedIn da Weedoo",
@@ -605,7 +591,7 @@
       "WebPage",
       "WebSite"
     ],
-    "total_erros": 40
+    "total_erros": 26
   },
   "concorrentes": [
     {
@@ -933,14 +919,16 @@
         "Article",
         "BreadcrumbList",
         "CollectionPage",
+        "FAQPage",
         "ImageObject",
         "MedicalScholarlyArticle",
+        "MedicalWebPage",
         "Person",
         "WebPage",
         "WebSite"
       ],
       "tem_eeat": true,
-      "tem_medical_schema": false,
+      "tem_medical_schema": true,
       "tem_rich_snippets": true,
       "paginas": [
         {
@@ -966,12 +954,13 @@
           "tem_medical_schema": false
         },
         {
-          "url": "https://blog.cannect.life/emagrecimento-e-metabolismo/canetas-para-emagrecer-perda-de-massa-muscular/",
+          "url": "https://blog.cannect.life/acesso-e-regulamentacao/guia-prescricao-eletronica-anvisa/",
           "acessivel": true,
           "bloqueio": null,
           "tipos": [
             "Article",
             "BreadcrumbList",
+            "FAQPage",
             "ImageObject",
             "MedicalScholarlyArticle",
             "Person",
@@ -983,29 +972,32 @@
           "tem_medical_schema": false
         },
         {
-          "url": "https://blog.cannect.life/emagrecimento-e-metabolismo/caneta-para-emagrecer/",
+          "url": "https://blog.cannect.life/saude-da-mulher/prevencao-cancer-de-mama/",
           "acessivel": true,
           "bloqueio": null,
           "tipos": [
             "Article",
             "BreadcrumbList",
+            "FAQPage",
             "ImageObject",
             "MedicalScholarlyArticle",
+            "MedicalWebPage",
             "Person",
             "WebPage",
             "WebSite"
           ],
           "tem_author": true,
           "tem_publisher": true,
-          "tem_medical_schema": false
+          "tem_medical_schema": true
         },
         {
-          "url": "https://blog.cannect.life/colunistas/cannabinoides-endometriose/",
+          "url": "https://blog.cannect.life/central-do-paciente/comprar-remedio-de-farmacia-cbd/",
           "acessivel": true,
           "bloqueio": null,
           "tipos": [
             "Article",
             "BreadcrumbList",
+            "FAQPage",
             "ImageObject",
             "MedicalScholarlyArticle",
             "Person",
