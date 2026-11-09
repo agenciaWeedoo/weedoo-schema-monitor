@@ -1,6 +1,6 @@
 {
   "versao_formato": 1,
-  "data": "2026-11-02",
+  "data": "2026-11-09",
   "gerado_por": "WeedooSEOMonitorBot",
   "weedoo": {
     "paginas": [
@@ -600,24 +600,16 @@
       "blog": "https://www.medrocket.com.br/index.html#cases",
       "paginas_lidas": 2,
       "paginas_tentadas": 2,
-      "tipos": [
-        "BreadcrumbList",
-        "FAQPage",
-        "ProfessionalService"
-      ],
+      "tipos": [],
       "tem_eeat": false,
       "tem_medical_schema": false,
-      "tem_rich_snippets": true,
+      "tem_rich_snippets": false,
       "paginas": [
         {
           "url": "https://www.medrocket.com.br/",
           "acessivel": true,
           "bloqueio": null,
-          "tipos": [
-            "BreadcrumbList",
-            "FAQPage",
-            "ProfessionalService"
-          ],
+          "tipos": [],
           "tem_author": false,
           "tem_publisher": false,
           "tem_medical_schema": false
@@ -626,11 +618,7 @@
           "url": "https://www.medrocket.com.br/index.html#cases",
           "acessivel": true,
           "bloqueio": null,
-          "tipos": [
-            "BreadcrumbList",
-            "FAQPage",
-            "ProfessionalService"
-          ],
+          "tipos": [],
           "tem_author": false,
           "tem_publisher": false,
           "tem_medical_schema": false
@@ -922,13 +910,13 @@
         "FAQPage",
         "ImageObject",
         "MedicalScholarlyArticle",
-        "MedicalWebPage",
         "Person",
+        "WebApplication",
         "WebPage",
         "WebSite"
       ],
       "tem_eeat": true,
-      "tem_medical_schema": true,
+      "tem_medical_schema": false,
       "tem_rich_snippets": true,
       "paginas": [
         {
@@ -954,13 +942,12 @@
           "tem_medical_schema": false
         },
         {
-          "url": "https://blog.cannect.life/acesso-e-regulamentacao/guia-prescricao-eletronica-anvisa/",
+          "url": "https://blog.cannect.life/colunistas/oab-da-medicina-enamed/",
           "acessivel": true,
           "bloqueio": null,
           "tipos": [
             "Article",
             "BreadcrumbList",
-            "FAQPage",
             "ImageObject",
             "MedicalScholarlyArticle",
             "Person",
@@ -972,26 +959,24 @@
           "tem_medical_schema": false
         },
         {
-          "url": "https://blog.cannect.life/saude-da-mulher/prevencao-cancer-de-mama/",
+          "url": "https://blog.cannect.life/saude-da-mulher/linha-de-cuidado-saude-da-mulher/",
           "acessivel": true,
           "bloqueio": null,
           "tipos": [
             "Article",
             "BreadcrumbList",
-            "FAQPage",
             "ImageObject",
             "MedicalScholarlyArticle",
-            "MedicalWebPage",
             "Person",
             "WebPage",
             "WebSite"
           ],
           "tem_author": true,
           "tem_publisher": true,
-          "tem_medical_schema": true
+          "tem_medical_schema": false
         },
         {
-          "url": "https://blog.cannect.life/central-do-paciente/comprar-remedio-de-farmacia-cbd/",
+          "url": "https://blog.cannect.life/emagrecimento-e-metabolismo/medico-nutricionista-para-emagrecer/",
           "acessivel": true,
           "bloqueio": null,
           "tipos": [
@@ -1001,6 +986,7 @@
             "ImageObject",
             "MedicalScholarlyArticle",
             "Person",
+            "WebApplication",
             "WebPage",
             "WebSite"
           ],
